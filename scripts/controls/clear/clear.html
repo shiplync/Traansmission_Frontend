@@ -1,0 +1,3 @@
+<div ng-controller="ApplicationController" ng-show="(!$ctrl.isNestedView && hasSearchParams()) || ($ctrl.isNestedView && hasNestedSearchParams())">
+  <button class="btn btn-warning btn-sm navbar-control-buttons" ng-click="$ctrl.clearFilters()"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Clear filters</button>
+</div>

@@ -1,0 +1,18 @@
+<div ng-init="init()">
+  <div ng-if="!users.length && !hasSearchParams() && !hasIdParam()">
+    <div ng-include="'scripts/team.users/users.list.empty-start.html'"></div>
+  </div>
+  <div ng-include="'scripts/team.users/users.list-create.html'" ng-if="isAuthorized([P.addUserInvite])"></div>
+  <div ng-if="!users.length && hasSearchParams()">
+    <div ng-include="'scripts/users/users.list.empty-search.html'"></div>
+  </div>
+  <div ng-if="!users.length && hasIdParam()">
+    <div ng-include="'scripts/layout/404.html'"></div>
+  </div>
+  <div dir-paginate="user in users | itemsPerPage:usersPerPage" total-items="totalUsers" current-page="pagination.current" pagination-id="users">
+    <div ng-include="'scripts/team.users/users.detail.html'" ng-controller="detailController"></div>
+    <!--<hr class="hr-dark">-->
+  </div>
+  <p class="text-color-gray pull-right" ng-if="totalUsers > 1">Total: {{totalUsers}} users</p>
+  <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" pagination-id="users"></dir-pagination-controls>
+</div>

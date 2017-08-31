@@ -1,0 +1,32 @@
+<detail-panel detail-obj="division" heading-title="division.name">
+  <settings-action ng-click="toggleState('division.settings', {division: division.id})" ng-if="isAuthorized([P.changeCompanyDivision])"></settings-action>
+  <detail-isolate-action detail-id="division.id"></detail-isolate-action>
+  <detail-content>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="detail-item">
+          <b>Division name</b>
+          <div ng-show="division.name">{{division.name}}</div>
+          <div ng-hide="division.name"><span class="text-color-gray">No details</span></div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="detail-item" ng-class="highlightState('division.members', {division: division.id})">
+          <b>Members</b>
+          <a href="" ng-if="isAuthorized([P.addCompanyDivisionMembership, P.deleteCompanyDivisionMembership])" ng-click="toggleState('division.members', {division: division.id})"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+          <div ng-hide="division.members_count">
+            <p class="text-color-gray">This division has no members</p>
+          </div>
+          <div ng-show="division.members_count">
+            <a href="" ng-click="toggleState('division.members', {division: division.id})">
+              Division has {{division.members_count}} {{division.members_count==1?'member':'members'}}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </detail-content>
+  <subdetail-content>
+    <div ui-view="detail"></div>
+  </subdetail-content>
+</detail-panel>

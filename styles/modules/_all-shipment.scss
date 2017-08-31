@@ -1,0 +1,303 @@
+#sort-filter{
+  margin-left:20px;
+}
+
+#sort-caret {
+  margin-left:5px;
+}
+
+.sort-dropdown-container, .sort-order-container{
+  font-size:16px;
+}
+
+.status-filter-container{
+  span.circle{
+        width:getSpace(x-small);
+        height:getSpace(x-small);
+        border: 1px solid getColor(line-gray);
+        display: inline-block;
+        margin:-2px 3px;
+        @include border-radius(getSpace(xx-small), getSpace(xx-small));
+      }
+.delivered{
+    background-color: getColor(delivered-green);
+  }
+  .on-route{
+    background-color: getColor(on-route-yellow);
+    color:getColor(night);
+  }
+  .delayed{
+    background-color: getColor(delayed-red);
+  }
+  .pending{
+    background-color: getColor(pending-blue);
+  }
+  .pending-approval{
+    background-color: getColor(pending-approval-blue);
+  }
+
+}
+.all-shipment{
+  min-height:100%;
+    
+    .check-label{
+      margin-top: 1px;
+      float:left;
+    }
+
+    #vehicle-filter-checks{
+      label{
+        margin-right:5px;
+      }
+    }
+
+  .shipment-list-container{
+  }
+  .dropdown-menu{
+  }
+  .search-panel{
+    background-color: getColor(light-gray);
+    @extend .padding-vertical-small;
+    #location-filter{
+      // location input field must not overflow panel
+      #location{
+        max-width:90%;
+        margin:auto;
+      }
+    } 
+  }
+
+  .search-section-title{
+    border-bottom: 1px solid getColor(line-gray);
+    line-height: 1.5em;
+    font-weight: bold;
+  }
+
+  .search-section-sub-title{
+    line-height: 1.5em;
+    @extend .text-small;
+  }
+
+  .search-button-side-bar{
+    margin-bottom: 20px;
+  }
+
+  .checkbox-container {
+    margin-left:5px; 
+    input[type=checkbox] {
+      visibility: hidden;
+      &:checked + label:after {
+        opacity: 1;
+      }
+   }      
+   label {
+      cursor: pointer;
+      width: 16px;
+      height: 16px;
+      background: getColor(snow);
+      border:1px solid getColor(night);
+      float:left;
+     input[type=checkbox] {
+      visibility: hidden;
+      &:checked + label:after {
+        opacity: 1;
+      }
+    }  
+      &:after {
+        float:left;
+        opacity: 0;
+        content: '';
+        width: 14px;
+        height: 8px;
+        background: transparent;
+        border: 3px solid getColor(ultra-dark-gray);
+        border-top: none;
+        border-right: none;
+        @include rotate(-45deg);        
+      }
+      &:hover::after {
+        opacity: 0.5;
+      }
+    }      
+      span.circle{
+        width:getSpace(x-small);
+        height:getSpace(x-small);
+        border: 1px solid getColor(line-gray);
+        float: left;
+        margin-left: 3px;
+        margin-top: 4px;
+        margin-right: 3px;
+        @include border-radius(getSpace(xx-small), getSpace(xx-small));
+
+      }
+      span.spacer{
+        margin:0 getSpace(xx-small);
+      }
+  }
+
+  .time-container{
+    @extend .margin-top-x-small;
+
+    .input-group .btn.btn-time{
+      border:none;
+      background: none;
+      font-size:16px;
+      padding:0;
+
+    }
+
+    .form-control{
+      border:none;
+      height: 18px;
+      padding: 0;
+      line-height: getSpace(medium);
+      @extend .text-small;
+      @extend .margin-left-x-small;
+      @extend .padding-left-x-small;
+    }
+
+    .time-legend{
+      @extend .text-small;
+      float:left;
+    }
+  }
+
+  .ui-slider{
+    height: getSpace(xx-small);
+    background: getColor(line-gray);
+    @extend .margin-bottom-xx-small;
+    @include border-radius(getSpace(xx-small), getSpace(xx-small));
+
+    .ui-slider-range{
+      background: getColor(night);
+    }
+
+    .ui-slider-handle{
+      cursor:pointer;
+      border:none;
+      top: -3px;
+      margin-left: - getSpace(xx-small);
+      width: getSpace(x-small);
+      height: getSpace(x-small);
+      background: getColor(night);
+      @include border-radius(getSpace(x-small), getSpace(x-small));
+    }
+  }
+
+  .slider-label{
+    @extend .text-xx-small;
+    @extend .margin-bottom-xx-small;
+  }
+
+  .shipment-list{
+    border-left:1px solid getColor(line-gray);
+    @extend .padding-left-medium;
+
+    .shipments-info-container{
+      @extend .margin-lateral-medium;
+      border-bottom: 1px solid getColor(light-gray);
+    }
+    .pager li a{
+      color:getColor(pending-blue);
+      border-color:getColor(pending-blue);
+    }
+        .shipment-detail-container{
+      @extend .margin-lateral-medium;
+      @extend .padding-vertical-x-small;
+      @include transition-property(background-color);
+      @include transition-duration(0.1s);
+      @include transition-timing-function(ease-in);
+      border-bottom: 1px solid getColor(light-gray);
+      cursor:pointer;
+      &:hover{
+        background-color: getColor(light-gray);
+      }
+    }
+
+    .total-shipments-legend{
+      @extend .margin-top-large;
+      @extend .text-large;
+
+      a{
+        @extend .text-x-small;
+        @extend .margin-left-small;
+        color: getColor(medium-gray);
+      }
+    }
+  }
+  .shipment-content{
+    @extend .margin-top-x-small;
+    // stop buttons from overflowing into search panel
+    button{
+      white-space: normal;
+    }
+  }
+  .transport-circle{
+    border: 1px solid getColor(pending-blue);
+    color: getColor(pending-blue);
+    width: getSpace(medium);
+    height: getSpace(medium);
+    line-height:getSpace(medium);
+    @include border-radius(getSpace(medium), getSpace(medium));
+  }
+
+  .transport-line{
+    background-color: getColor(pending-blue);
+    width: 1px;
+    height: getSpace(large);
+    @extend .margin-left-x-small;
+  }
+  .transport-name{
+    @extend .text-small;
+    line-height: getFontSize(medium);
+  }
+  .transport-address-time{
+    @extend .text-small;
+    @extend .margin-top-xx-small;
+    line-height: getFontSize(medium);
+    color: getColor(medium-gray);
+
+    i{
+      @extend .margin-right-xx-small;
+    }
+  }
+
+  .btn-status{
+    @extend .text-x-medium;
+    @extend .text-uppercase;
+    @extend .padding-lateral-x-large;
+    @extend .padding-vertical-xx-small;
+    @include border-radius(getSpace(small), getSpace(small));
+    color: getColor(snow);
+    letter-spacing: 1px;
+  }
+  .btn-search{
+    @extend .text-x-medium;
+    @extend .padding-lateral-x-small;
+    @extend .margin-top-small;
+    @include border-radius(getSpace(small), getSpace(small));
+    color: getColor(snow);
+    letter-spacing: 1px;
+    background-color: black;
+    width:100px;
+    max-width:100%;
+  }
+  .delivered{
+    background-color: getColor(delivered-green);
+  }
+  .on-route{
+    background-color: getColor(on-route-yellow);
+    color:getColor(night);
+  }
+  .delayed{
+    background-color: getColor(delayed-red);
+  }
+  .pending{
+    background-color: getColor(pending-blue);
+  }
+  .pending-approval{
+    background-color: getColor(pending-approval-blue);
+  }
+}
+
+

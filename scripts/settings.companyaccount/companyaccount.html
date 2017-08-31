@@ -1,0 +1,35 @@
+<div ng-init="init()">
+  <div class="row">
+    <div class="col-sm-3">
+      <p class="text-center">
+        <img ng-if="hasCompanyLogo(currentUser.company)" ng-src="{{currentUser.company.logo ? currentUser.company.logo.file_url : ''}}" alt="sometext" class="img-thumbnail">
+      <div ng-if="!hasCompanyLogo(currentUser.company)"class="image-with-text">{{company.company_name}}</div>
+      </p>
+    </div>
+    <div class="col-sm-6">
+      <h2 class="no-top-margin">{{company.company_name}}</h2>
+      <dl class="dl-horizontal">
+        <br>
+        <div ng-show="company.dot">
+          <dt>DOT #</dt>
+          <dd>{{company.dot}}</dd>
+        </div>
+        <div ng-show="company.city">
+          <dt>City</dt>
+          <dd>{{company.city}}</dd>
+        </div>
+        <div ng-show="company.state">
+          <dt>state</dt>
+          <dd>{{company.state}}</dd>
+        </div>
+        <div ng-show="company.company_type">
+          <dt>Company type</dt>
+          <dd>{{company.company_type.label}}</dd>
+        </div>
+      </dl>
+    </div>
+    <div class="col-sm-3">
+      <h3><span class="glyphicon glyphicon-edit pull-right pointer" aria-hidden="true" ui-sref="companyaccount.edit.basic"></span></h3>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div ng-init="init()">
+  <!--
+  <form class="panel-body detail-body">
+    <div class="row">
+      <div class="col-sm-6">
+
+      </div>
+      <div class="col-sm-6">
+      
+      </div>
+    </div>
+  </form>
+  -->
+
+  <div class="panel-footer">
+    <button ng-hide="user.inactive" class="btn btn-xs btn-danger" disable-on-promise="suspendUser()"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Suspend user</button>
+    <button ng-show="user.inactive" class="btn btn-xs btn-primary" disable-on-promise="enableUser()"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Enable user</button>
+  </div>
+</div>

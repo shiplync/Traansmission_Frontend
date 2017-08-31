@@ -1,0 +1,14 @@
+<div ng-init="init()">
+  <div ng-if="!userinvites.length && !hasIdParam()">
+    <div ng-include="'scripts/team.userinvites/userinvites.list.empty-search.html'"></div>
+  </div>
+  <div ng-if="!userinvites.length && hasIdParam()">
+    <div ng-include="'scripts/layout/404.html'"></div>
+  </div>
+  <div dir-paginate="userinvite in userinvites | itemsPerPage:userinvitesPerPage" total-items="totalUserinvites" current-page="pagination.current" pagination-id="userinvites">
+    <div ng-include="'scripts/team.userinvites/userinvites.detail.html'" ng-controller="detailController"></div>
+    <!--<hr class="hr-dark">-->
+  </div>
+  <p class="text-color-gray pull-right" ng-if="totalUserinvites > 1">Total: {{totalUserinvites}} invitations</p>
+  <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" pagination-id="userinvites"></dir-pagination-controls>
+</div>

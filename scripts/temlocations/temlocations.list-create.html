@@ -1,0 +1,22 @@
+<div class="well">
+  <div class="row">
+    <form>
+      <div class="col-sm-12">
+        <div class="row">
+        <div class="col-sm-6">
+            <p class="text-color-gray lead">Create a new template location</p>
+          </div>
+          <div class="col-sm-3">
+            <text-form-field-nolabel model-name="createObj.company_name" placeholder="'Company name'" errors="fieldErrors.company_name"></text-form-field-nolabel>
+          </div>
+          <div class="col-sm-3">
+            <div class="btn btn-primary btn-sm btn-block" disable-on-promise="addLocation(createObj)"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Create</div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div ng-repeat="err in fieldErrors.non_field_errors">
+    <p class="inline-error">{{err}}</p>
+  </div>
+</div>

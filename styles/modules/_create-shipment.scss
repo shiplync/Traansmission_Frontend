@@ -1,0 +1,52 @@
+@import "font-awesome/scss/font-awesome.scss";
+.create-shipment {
+    .fa-times{
+      margin-right:5px;
+    }
+    .clear-form-text{
+      padding-top:11px;
+      padding-left:1px;
+      a{
+        color:black;
+        cursor:pointer;
+      }
+    }
+    #special-instructions-label{
+        margin-right:3px;
+    }
+    // hack to switch timepicker twitter bootstrap icons to fontawesome until we get new build system
+    .glyphicon{
+    @extend .fa;
+    }
+    .glyphicon-chevron-up{
+        @extend .fa-chevron-up;
+
+    }
+    .glyphicon-chevron-down{
+        @extend .fa-chevron-down;
+    }
+    .glyphicon-chevron-left{
+        @extend .fa-chevron-left;
+
+    }
+    .glyphicon-chevron-right{
+        @extend .fa-chevron-right;
+    }
+}
+.timepicker{
+    margin-top: -33px;
+}
+.help-tooltip{
+  color:#555555;
+}
+
+.palletized-form{
+  .form-group{
+    text-align:center;
+    padding:5px;
+  }
+}
+
+.clear-form{
+  font-size:16px;
+}

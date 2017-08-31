@@ -1,0 +1,34 @@
+// Colors array.
+$colors :
+snow #FFF,
+night #000,
+ultra-dark-gray #333,
+dark-gray #383737,
+medium-gray #858585,
+light-gray #DFDFDF,
+line-gray #ACABAB,
+delivered-green #70D03D,
+on-route-yellow #FFFF00,
+delayed-red #FF8F00,
+pending-approval-blue #0000b1,
+pending-blue #4593B3;
+
+// Font configuration.
+$font-sizes        :
+xx-small 0.625em,
+x-small  0.750em,
+small    0.875em,
+medium   1em,
+x-medium 1.125em,
+large    1.375em,
+x-large  1.875em;
+
+// Spacing sizes for padding and margins.
+$spaces :
+xx-small 5px,
+x-small  10px,
+small    15px,
+medium   20px,
+large    30px,
+x-large  40px,
+xx-large  50px;

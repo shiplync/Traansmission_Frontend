@@ -1,0 +1,55 @@
+@import "compass";
+@import "compass/reset";
+$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+// $bootstrap-sass-asset-helper: false;
+// $icon-font-path: "../fonts/";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap.scss";
+
+// // Configuration files.
+// @import "config/theme";
+
+// // Config components.
+// @import "config/functions";
+// @import "config/position";
+// @import "config/spacing";
+// // @import "config/fonts";
+
+// // General Layout components.
+// @import "layout/header";
+// @import "layout/content";
+
+// Specific Layout components.
+// @import "modules/create-shipment";
+// @import "modules/all-shipment";
+// @import "modules/single-shipment";
+// @import "modules/shipment";
+// @import "modules/tos";
+// @import "modules/profile";
+// @import "modules/saved-locations";
+
+@import "../styles/modules/company-relations";
+@import "../styles/modules/shipment-assignments";
+@import "../styles/modules/bs-wizard";
+@import "../styles/modules/main";
+//Colors
+$cb-0: #ffffff;
+$cb-1: #fdfdfd;
+$cb-2: #fbfbfb;
+$cb-3: #f9f9f9;
+$cb-4: #f7f7f7;
+$cb-5: #f5f5f5;
+$cb-6: #f3f3f3;
+$cb-7: #f1f1f1;
+$cb-8: #efefef;
+$cb-9: #ededed;
+$cb-10: #ebebeb;
+$cb-11: #e9e9e9;
+$cb-12: #e7e7e7;
+.nav-item-highlight {
+  background: lighten($gray-base, 88%);
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 5px;
+}

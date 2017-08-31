@@ -1,0 +1,20 @@
+<div ng-init="init()">
+  <div class="panel-body detail-body">
+  <p>Select one or more options below</p>
+  <div ng-repeat="category in tagCategoryChoices">
+    <h3>{{category.display_name}}</h3>
+    <div ng-repeat="tag in tagTypeChoices | filter: {category : category.value}">
+      <input type="checkbox" ng-model="tag.checked" disable-on-promise="equipmentTagChanged(tag)"> {{tag.display_name}}
+    </div>
+  </div>
+  </div>
+</div>
+<div class="panel-footer" ng-if="shipment.permissions.can_change">
+<div class="row">
+  <div class="col-md-9">
+  </div>
+  <div class="col-md-3">
+    <button class="btn btn-xs btn-primary btn-block margin-xs" disable-on-promise="update()"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Save equipment</button>
+  </div>
+  </div>
+</div>

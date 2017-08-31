@@ -1,0 +1,37 @@
+<detail-panel detail-obj="company" heading-title="company.company_name">
+  <detail-isolate-action detail-id="company.id"></detail-isolate-action>
+
+  <detail-content>
+    <div class="row">
+      <div class="col-sm-3">
+        <p class="text-center">
+          <img ng-if="hasCompanyLogo(company)" ng-src="{{company.logo ? company.logo.file_url : ''}}" alt="sometext" class="img-thumbnail">
+          <div ng-if="!hasCompanyLogo(company)" class="image-with-text">{{company.company_name}}</div>
+        </p>
+      </div>
+      <div class="col-sm-9">
+        <div class="row">
+          <div class="col-sm-5">
+            <div class="detail-item">
+              <b>Type of company</b>
+              <div>{{company.company_type.label}}</div>
+            </div>
+            <div class="detail-item" ng-if="company.dot">
+              <b>DOT #</b>
+              <div>{{company.dot}}</div>
+            </div>
+          </div>
+          <div class="col-sm-5">
+            
+          </div>
+          <div class="col-sm-2">
+          </div>
+        </div>
+      </div>
+    </div>
+  </detail-content>
+
+  <subdetail-content>
+    <div ui-view="detail"></div>
+  </subdetail-content>
+</detail-panel>

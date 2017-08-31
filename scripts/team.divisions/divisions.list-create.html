@@ -1,0 +1,27 @@
+<div class="well">
+  <p class="text-color-gray lead">Create a new company division</p>
+  <div class="row">
+    <form>
+      <div class="col-sm-9">
+        <div class="row">
+          <div class="col-sm-6">
+            <text-form-field-nolabel model-name="createObj.name" placeholder="'Division name'" errors="fieldErrors.name"></text-form-field-nolabel>
+          </div>
+          <div class="col-sm-3">
+            
+          </div>
+          <div class="col-sm-3">
+            
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="btn btn-primary btn-sm btn-block" disable-on-promise="addDivision(createObj)"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Create</div>
+      </div>
+    </form>
+  </div>
+  <p class="inline-success">{{responseMsg}}</p>
+  <div ng-repeat="err in fieldErrors.non_field_errors">
+    <p class="inline-error">{{err}}</p>
+  </div>
+</div>

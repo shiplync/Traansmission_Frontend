@@ -1,0 +1,32 @@
+<div ng-init="init()">
+<div ng-include="'/scripts/authentication.register/register.progress.html'"></div>
+<form class="section-content auth-form">
+  <p class="lead">Now let's get your company up and running on Traansmission.</p>
+  <div class="form-group">
+    <text-form-field-nolabel model-name="company.company_name" placeholder="'Company Name'" errors="fieldErrors.company_name"></text-form-field-nolabel>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <text-form-field-nolabel model-name="company.city" placeholder="'City'" errors="fieldErrors.city"></text-form-field-nolabel>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <select ng-model="company.state" class="form-control input-sm">
+          <option value="" selected>State</option>
+          <option ng-repeat="state in stateList" value="{{state.abbreviation}}">{{state.abbreviation}}</option>
+        </select>
+        <div ng-repeat="err in fieldErrors.state">
+          <div class="inline-error">{{err}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <text-form-field-nolabel model-name="company.dot" placeholder="'DOT number (optional)'" errors="fieldErrors.dot"></text-form-field-nolabel>
+  </div>
+  <p class="text-danger padding-top-bottom" >{{ registerError }}</p>
+  <button class="btn btn-lg btn-primary btn-block btn-sm" type="submit" disable-on-promise="pacthCompany()">Done!</button>
+</form>
+</div>

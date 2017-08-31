@@ -1,0 +1,5 @@
+<button ng-if="controls.addInstance && isAuthorized(controls.addInstance.permissions)" ng-hide="params.id" class="btn btn-default btn-sm navbar-control-buttons" disable-on-promise="controls.addInstance.add()"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> New {{controls.addInstance.label}}</button>
+
+<button ng-if="controls.backToList" ng-show="params.id" class="btn btn-default btn-sm navbar-control-buttons" ui-sref="{{controls.backToList}}"><span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span> Back to list</button>
+
+<button ng-if="controls.clearFilters" ng-show="hasSearchParams()" class="btn btn-warning btn-sm navbar-control-buttons" ui-sref="{{controls.clearFilters}}" ui-sref-opts="{inherit: false}"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Clear filters</button>

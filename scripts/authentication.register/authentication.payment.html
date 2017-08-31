@@ -1,0 +1,128 @@
+<div ng-init="init()">
+  <div class="section-about1">
+    <div class="container">
+      <h1>Our pricing structure is <span class="c3">flexible</span> and matches your needs whether you have <span class="c3">5</span> or <span class="c3">500</span> trucks</h1>
+    </div>
+  </div>
+  <div class="section-about2">
+    <div class="color-overlay"></div>
+    <div class="container">
+      <div class="section-content">
+
+
+        <div class="panel">
+          <div class="panel-body padded-sides">
+            <div class="row">
+              <div class="col-sm-8">
+
+                <div class="well">
+                  <div class="row">
+                    <div class="col-sm-10">
+                      <h4>Users</h4>
+                    </div>
+                    <div class="col-sm-2">
+                      <span class="badge">{{userSlider.value}}</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <p class="text-color-gray">How many <b>user</b> logins (dispachers, supervisors, managers) do you need?</p>
+                    </div>
+                  </div>
+                  <slider ng-model="userSlider.value" min="userSlider.min" step="userSlider.step" max="userSlider.max" value="userSlider.value" on-stop-slide="setCost()"></slider>
+                </div>
+                <div class="well">
+                  <div class="row">
+                    <div class="col-sm-10">
+                      <h4>Drivers</h4>
+                    </div>
+                    <div class="col-sm-2">
+                    <span class="badge badge-primary">{{driverSlider.value}}</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <p class="text-color-gray">How many <b>drivers</b> do you want to track?</p>
+                    </div>
+                  </div>
+                  <slider ng-model="driverSlider.value" min="driverSlider.min" step="driverSlider.step" max="driverSlider.max" value="driverSlider.value" on-stop-slide="setCost()"></slider>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div style="margin-bottom: 10px"><span class="label label-warning">20% discount</span></div>
+                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                  <div class="btn btn-default" ng-class="planType=='annual' ? 'active' : ''" ng-click="planType='annual'; setCost()">Annual</div>
+                  <div class="btn btn-default" ng-class="planType=='monthly' ? 'active' : ''" ng-click="planType='monthly'; setCost()">Monthly</div>
+                </div>
+                <br>
+                <p class="text-color-gray small">12-month commit = <b>20% discount</b></p>
+                <hr>
+                <h4>${{monthlyCost}}/month</h4>
+                <p class="text-color-gray small">{{userSlider.value}} users<br>{{driverSlider.value}} drivers</p>
+                <hr>
+								<button class="btn btn-primary btn-block" type="submit"
+									disable-on-promise="serviceInfo()">Get started</button>
+                <p class="text-color-gray small text-center">No charge until trial is over. <br>No hidden fees.</p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="section-title">
+        <h2>FAQ</h2>
+      </div>
+      <div class="section-content">
+        <div class="row">
+          <div class="col-sm-12 padded-sides">
+            <h2>Pricing</h2>
+            <hr>
+            <h4>How much will I pay per month?</h4>
+            <p class="lead">You pay only for what you use. Try our interactive pricing tool here.</p>
+
+            <h4>What happens if sign up for more dispatchers and trucks than I end up using?</h4>
+            <p class="lead">We only charge for what you use. If we bill you more than you use, let us know and we’ll square you away.</p>
+
+            <h4>Am I charged automatically after my free trial ends?</h4>
+            <p class="lead">You can cancel at any time during the trial. After 30 days, we convert your account to paid.</p>
+
+            <h4>Are there any additional fees?</h4>
+            <p class="lead">No! We strongly stand behind transparent pricing and no hidden fees.</p>
+
+            <h4>What price will I pay if I commit to the annual plan during my free trial?</h4>
+            <p class="lead">You will be billed our discounted annual rate (20% off).</p>
+
+            <h4>How does the 30-day free trial work?</h4>
+            <p class="lead">After signing up, you can immediately start posting or receiving loads from your trusted business partners. You automatically roll over to the monthly rate after the trial ends but you always have the option to transfer to our discounted annual plan. If for any reason you are dissatisfied with our services, you can cancel the free trial and will not be billed.</p>
+
+            <br>
+            <h2>Other</h2>
+            <hr>
+            <h4>Do you offer discounts?</h4>
+            <p class="lead">Yes, our annual plan is a discounted rate.</p>
+
+            <h4>Can other brokers or shippers see my loads?</h4>
+            <p class="lead">No, your loads and identity are private to everyone except for your trusted business partners.</p>
+
+            <h4>Can other members of my team get location updates?</h4>
+            <p class="lead">Yes, we can add multiple email addresses to receive location updates.</p>
+
+            <h4>Do you work with other load boards?</h4>
+            <p class="lead">No, the portal only shows your freight to the trusted business partners you want to onboard and work with. We are your own private load board!</p>
+
+            <h4>How do you eliminate the risk of a double brokered load?</h4>
+            <p class="lead">You control the network of people that you interact with on our portal, so you never have to deal with companies you don’t recognize.</p>
+
+            <h4>Can my shipper receive location updates like I will - to prevent them from calling the broker?</h4>
+            <p class="lead">Yes, when requested we can add your shippers email address to our notification list for location updates.</p>
+
+            <h4>More questions?</h4>
+            <p class="lead">Email us at: <a href="mailto:contact@traansmission.com">contact@traansmission.com</a> or call us at: (412) 447-5623</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

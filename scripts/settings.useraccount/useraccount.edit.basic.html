@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-sm-4">
+    <p class="text-center">
+      <img ng-if="!hasProfilePhoto(currentUser)" src="images/profile_placeholder.png" class="img-thumbnail">
+      <img ng-if="hasProfilePhoto(currentUser)" ng-src="{{currentUser.profile_photo.file_url}}" class="img-thumbnail">
+    </p>
+  </div>
+  <div class="col-sm-8">
+    <form>
+      <div class="row">
+        <div class="form-group col-sm-6">
+          <label>First name</label>
+          <input ng-model="user.first_name" type="text" class="form-control" placeholder="First name">
+          <div ng-repeat="err in fieldErrors.first_name">
+            <div class="inline-error">{{err}}</div>
+          </div>
+        </div>
+        <div class="form-group col-sm-6">
+          <label>Last name</label>
+          <input ng-model="user.last_name" type="text" class="form-control" placeholder="Last name">
+          <div ng-repeat="err in fieldErrors.last_name">
+            <div class="inline-error">{{err}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email address</label>
+        <input ng-model="user.email" type="email" class="form-control" placeholder="E.g. joe@example.com">
+        <div ng-repeat="err in fieldErrors.email">
+          <div class="inline-error">{{err}}</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Phone</label>
+        <input ng-model="user.phone" type="text" class="form-control" placeholder="E.g. 555-222-5555" us-phone-conversion>
+        <div ng-repeat="err in fieldErrors.phone">
+          <div class="inline-error">{{err}}</div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-sm-6">
+    <button type="submit" class="btn btn-sm btn-primary btn-block" disable-on-promise="updateBasic()">Update</button>
+  </div>
+  <div class="col-sm-6">
+    <button class="btn btn-sm btn-default btn-block" ui-sref="^.^">Back</button>
+  </div>
+</div>

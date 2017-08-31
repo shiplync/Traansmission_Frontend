@@ -1,0 +1,58 @@
+<div ng-init="init()">
+  <div ng-include="'/scripts/authentication.register/register.progress.html'"></div>
+  <div class="section-content pricing-container">
+    <p class="lead">We don't ask for payment information until your 30 day trial is over!</p>
+    <div class="row">
+      <div class="col-sm-7">
+        <div class="well">
+          <div class="row">
+            <div class="col-sm-10">
+              <h4>{{userSlider.value}} {{userSlider.value==1 ? 'user' : 'users'}}</h4>
+            </div>
+            <div class="col-sm-2">
+            </div>                
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <p class="text-color-gray">How many *<b>users</b> (other than drivers) will be using the platform?</p>
+            </div>
+          </div>
+          <slider ng-model="userSlider.value" min="userSlider.min" step="userSlider.step" max="userSlider.max" value="userSlider.value" on-stop-slide="setCost()"></slider>
+        </div>  
+        <div class="well">
+          <div class="row">
+            <div class="col-sm-10">
+              <h4>{{driverSlider.value}} {{driverSlider.value==1 ? 'driver' : 'drivers'}}</h4>
+            </div>
+            <div class="col-sm-2">
+            </div>                
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <p class="text-color-gray">How many <b>drivers</b> do you want to track?</p>
+            </div>
+          </div>
+          <slider ng-model="driverSlider.value" min="driverSlider.min" step="driverSlider.step" max="driverSlider.max" value="driverSlider.value" on-stop-slide="setCost()"></slider>
+        </div>
+      </div>
+      <div class="col-sm-5">
+        <div class="well">
+          <div class="btn-group btn-group-justified" role="group" aria-label="...">
+            <div class="btn btn-default" ng-class="planType=='annual' ? 'active' : ''" ng-click="planType='annual'; setCost()">Annual</div>
+            <div class="btn btn-default" ng-class="planType=='monthly' ? 'active' : ''" ng-click="planType='monthly'; setCost()">Monthly</div>
+          </div>
+          <div style="margin-top: 5px; margin-left: 15px;"><span class="label label-warning">20% discount</span></div>
+          <hr>
+          <h4>${{monthlyCost}}/month</h4>
+          <p class="text-color-gray small">12-month commit = <b>20% discount</b></p>
+          
+          <p class="text-color-gray small">No charge until trial is over. No hidden fees.</p>
+          <hr>
+          <a class="btn btn-primary btn-block" ng-click="patchSubscription()">Next</a>
+        </div>
+      </div>
+    </div>
+    <p class="text-color-gray">*<b>User</b> accounts refer to <span data-trigger="hover" data-placement="top" html="true" data-content="<p>There are two types of <b>user</b> accounts. Each has specific access. </p><p><b>Admins:</b> oversight over all dispatcher and driver accounts</p><p><b>Dispatchers:</b> oversight over assigned drivers</p>" bs-popover class="hover-link">admins and dispatchers</span>. All accounts have load management and track and trace abilities.</p>
+    <p class="text-color-gray">Questions, comments, or concerns? Contact us at <a href="mailto:sales@traansmission.com">sales@traansmission.com</a> and we will get back to you shortly.</p>
+  </div>
+</div>

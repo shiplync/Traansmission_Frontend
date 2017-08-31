@@ -1,0 +1,18 @@
+<div ng-init="init()">
+  <div ng-if="!locations.length && !hasSearchParams() && !hasIdParam()">
+    <div ng-include="'scripts/temlocations/temlocations.list.empty-start.html'"></div>
+  </div>
+  <div ng-include="'scripts/temlocations/temlocations.list-create.html'" ng-if="isAuthorized([P.addTemplateLocation])"></div>
+  <div ng-if="!locations.length && hasSearchParams()">
+    <div ng-include="'scripts/temlocations/temlocations.list.empty-search.html'"></div>
+  </div>
+  <div ng-if="!locations.length && hasIdParam()">
+    <div ng-include="'scripts/layout/404.html'"></div>
+  </div>
+  <div dir-paginate="location in locations | itemsPerPage:locationsPerPage" total-items="totalLocations" current-page="pagination.current" pagination-id="temlocations">
+    <div ng-include="'scripts/temlocations/temlocations.detail.html'" ng-controller="detailController"></div>
+    <!--<hr class="hr-dark">-->
+  </div>
+  <p class="text-color-gray pull-right" ng-if="totalLocations > 1">Total: {{totalLocations}} template locations</p>
+  <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" pagination-id="temlocations"></dir-pagination-controls>
+</div>

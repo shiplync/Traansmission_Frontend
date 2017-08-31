@@ -1,0 +1,16 @@
+@font-face {
+  font-family: 'harabara';
+  src: url('../fonts/Harabara.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'miryad-pro';
+  src: url('../fonts/MyriadPro-Regular_0.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+$harabara : 'harabara';
+$myriad : 'miryad-pro';

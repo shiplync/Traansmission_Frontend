@@ -1,0 +1,214 @@
+<div ng-init="init()">
+  <div class="panel-body detail-body">
+    <form name="forms.locations[location.id.toString()]">
+      <div class="row">
+        <div class="col-sm-6">
+          <h4>Location details</h4>
+          <div class="field-container">
+            <label class="col-sm-4 control-label">Location Type</label>
+            <div class="col-sm-8">
+              <select ng-model="location.location_type.value" class="form-control input-sm" convert-to-number>
+                <option ng-repeat="type in locationtypes" value="{{type.value}}">{{type.name}}</option>
+              </select>
+              <div ng-repeat="err in fieldErrors.location_type">
+                <div class="inline-error">{{err}}</div>
+              </div>
+            </div>
+          </div>
+          <text-form-field label-name="'Company name'" model-name="location.company_name" placeholder="'Company name'" errors="fieldErrors.company_name"></text-form-field>
+          <div class="field-container">
+            <label class="col-sm-4 control-label">Contact name</label>
+            <div class="col-sm-8">
+              <div class="row"> 
+                <div class="col-sm-6 form-group">
+                  <input type="text" class="form-control input-sm" ng-minlength="2" ng-model="location.contact.first_name" placeholder="First"/>
+                </div>
+                <div class="col-sm-6 form-group">
+                  <input type="text" class="form-control input-sm" ng-minlength="2" ng-model="location.contact.last_name" placeholder="Last"/>
+                </div>
+              </div>
+              <div ng-repeat="err in fieldErrors.contact.first_name">
+                <div class="inline-error">{{err}}</div>
+              </div>
+              <div ng-repeat="err in fieldErrors.contact.last_name">
+                <div class="inline-error">{{err}}</div>
+              </div>
+            </div>
+          </div>
+          <text-form-field label-name="'Contact email'" model-name="location.contact.email" placeholder="'E.g. joe@example.com'" errors="fieldErrors.contact.email"></text-form-field>
+          <div class="field-container">
+            <label class="col-sm-4 control-label">Contact phone</label>
+            <div class="col-sm-8">
+              <input placeholder="E.g. 555-222-5555" type="text" class="form-control input-sm" ng-model="location.contact.phone" us-phone-conversion/>
+              <div ng-repeat="err in fieldErrors.contact.phone">
+                <div class="inline-error">{{err}}</div>
+              </div>
+            </div>
+          </div>
+          <text-form-field label-name="'Address'" model-name="location.address_details.address" placeholder="'E.g. 123 Broadway'" errors="fieldErrors.address_details.address"></text-form-field>
+          <text-form-field label-name="'Address line 2'" model-name="location.address_details.address_2" placeholder="'Optional'" errors="fieldErrors.address_details.address_2"></text-form-field>
+          <text-form-field label-name="'City'" model-name="location.address_details.city" placeholder="'E.g. Atlanta'" errors="fieldErrors.address_details.city" has-warning="!location.address_details.city"></text-form-field>
+          <div class="field-container">
+            <label class="col-sm-4 control-label">State and Zip</label>
+            <div class="col-sm-8">
+              <div class="row">
+                <div class="col-sm-6 form-group" ng-class="!location.address_details.state ? 'has-warning' : ''">
+                  <select ng-model="location.address_details.state" class="form-control input-sm">
+                    <option value="" selected>State</option>
+                    <option ng-repeat="state in stateList" value="{{state.abbreviation}}">{{state.abbreviation}}</option>
+                  </select>
+                </div>
+                <div class="col-sm-6 form-group">
+                  <input type="text" class="form-control input-sm" ng-minlength="4" ng-model="location.address_details.zip_code" placeholder="Zip"/>
+                </div>
+              </div>
+              <div ng-repeat="err in fieldErrors.address_details.state">
+                <div class="inline-error">{{err}}</div>
+              </div>
+              <div ng-repeat="err in fieldErrors.address_details.zip_code">
+                <div class="inline-error">{{err}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <h4>Expected arrival time</h4>
+          <div class="field-container">
+            <label class="col-sm-4 control-label">Type</label>
+            <div class="col-sm-8 form-group">
+              <label class="radio-inline">
+                <input type="radio" ng-model="location.time_range_type" value="exact"> Exact
+              </label>
+              <label class="radio-inline">
+                <input type="radio" ng-model="location.time_range_type" value="range"> Time range
+              </label>
+            </div>
+          </div>
+          <div class="field-container" ng-show="location.time_range_type=='exact'">
+            <label class="col-sm-4 control-label">Time and date</label>
+            <div class="col-sm-8">
+              <div class="row">
+                <div class="col-sm-6 form-group" ng-class="!location.time_range.time_range_end_picker ? 'has-warning' : ''">
+                  <input type="text" size="10" class="form-control input-sm" ng-model="location.time_range.time_range_end_picker" data-autoclose="1" placeholder="Date" data-container="body" bs-datepicker timezone="UTC" ng-change="updateLocationModelTimes(location)">
+                </div>
+                <div class="col-sm-6 form-group" ng-class="!location.time_range.time_range_end_picker ? 'has-warning' : ''">
+                  <input type="text" size="8" class="form-control input-sm" ng-model="location.time_range.time_range_end_picker" data-autoclose="1" placeholder="Time" data-container="body" bs-timepicker timezone="UTC" ng-change="updateLocationModelTimes(location)">
+                </div>
+              </div>
+              <div ng-repeat="err in fieldErrors.time_range.time_range_end">
+                <div class="inline-error">{{err}}</div>
+              </div>
+            </div>
+          </div>
+          <div ng-show="location.time_range_type=='range'">
+            <div class="field-container">
+              <label class="col-sm-4 control-label">Earliest time</label>
+              <div class="col-sm-8">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <input type="text" size="10" class="form-control input-sm" ng-model="location.time_range.time_range_start_picker" data-autoclose="1" placeholder="Date" data-container="body" bs-datepicker timezone="UTC" ng-change="updateLocationModelTimes(location)">
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="text" size="8" class="form-control input-sm" ng-model="location.time_range.time_range_start_picker" data-autoclose="1" placeholder="Time" data-container="body" bs-timepicker timezone="UTC" ng-change="updateLocationModelTimes(location)">
+                  </div>
+                </div>
+                <div ng-repeat="err in fieldErrors.time_range.time_range_start">
+                  <div class="inline-error">{{err}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="field-container">
+              <label class="col-sm-4 control-label">Latest time</label>
+              <div class="col-sm-8">
+                <div class="row">
+                  <div class="col-sm-6 form-group" ng-class="!location.time_range.time_range_end_picker ? 'has-warning' : ''">
+                    <input type="text" size="10" class="form-control input-sm" ng-model="location.time_range.time_range_end_picker" data-autoclose="1" placeholder="Date" data-container="body" bs-datepicker timezone="UTC"/ ng-change="updateLocationModelTimes(location)">
+                  </div>
+                  <div class="col-sm-6 form-group" ng-class="!location.time_range.time_range_end_picker ? 'has-warning' : ''">
+                    <input type="text" size="8" class="form-control input-sm" ng-model="location.time_range.time_range_end_picker" data-autoclose="1" placeholder="Time" data-container="body" bs-timepicker timezone="UTC" ng-change="updateLocationModelTimes(location)">
+                  </div>
+                </div>
+                <div ng-repeat="err in fieldErrors.time_range.time_range_end">
+                  <div class="inline-error">{{err}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="field-container">
+            <label class="col-sm-4 control-label">Time Zone</label>
+            <div class="col-sm-8">
+              <select ng-model="location.time_range.tz" class="form-control input-sm" ng-change="updateLocationPickerTimes(location)">
+                <option value="">Time Zone</option>
+                <option ng-repeat="zone in timezones" value="{{zone.standard}}">{{zone.standard}}</option>
+              </select>
+              <div ng-repeat="err in fieldErrors.time_range.tz">
+                <div class="inline-error">{{err}}</div>
+              </div>
+            </div>
+          </div>
+          <h4>Other information</h4>
+          <text-form-field label-name="'Weight (lb)'" model-name="location.features.weight" placeholder="'Weight in lb'" errors="fieldErrors.features.weight"></text-form-field>
+          <text-form-field label-name="'Appointment number/code'" model-name="location.appointment_id" placeholder="'If available'" errors="fieldErrors.appointment_id"></text-form-field>
+          <div class="field-container">
+            <label class="col-sm-4 control-label">Palletized</label>
+            <div class="col-sm-8">
+              <label class="radio-inline"><input type="radio" ng-model="location.features.palletized" ng-value="true">yes</label>
+              <label class="radio-inline"><input type="radio" ng-model="location.features.palletized" ng-value="false">no</label>
+              <div ng-repeat="err in fieldErrors.features.palletized">
+                <div class="inline-error">{{err}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="field-container" ng-show="location.features.palletized">
+            <label class="col-sm-4 control-label">No. of pallets</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control input-sm" ng-model="location.features.pallet_number" placeholder="No. of pallets"/>
+              <div ng-repeat="err in fieldErrors.features.pallet_number">
+                <div class="inline-error">{{err}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="field-container" ng-show="location.features.palletized">
+            <label class="col-sm-4 control-label">Pallet dimensions</label>
+            <div class="col-sm-8">
+              <div class="row">
+                <div class="col-sm-4 form-group">
+                  <input type="text" class="form-control input-sm" ng-model="location.features.pallet_length" placeholder="L"/>
+                </div>
+                <div class="col-sm-4 form-group">
+                  <input type="text" class="form-control input-sm" ng-model="location.features.pallet_width" placeholder="W"/>
+                </div>
+                <div class="col-sm-4 form-group">
+                  <input type="text" class="form-control input-sm" ng-model="location.features.pallet_height" placeholder="H"/>
+                </div>
+              </div>
+              <div ng-repeat="err in fieldErrors.features.pallet_length"><div class="inline-error">{{err}}</div></div>
+              <div ng-repeat="err in fieldErrors.features.pallet_width"><div class="inline-error">{{err}}</div></div>
+              <div ng-repeat="err in fieldErrors.features.pallet_height"><div class="inline-error">{{err}}</div></div>
+            </div>
+          </div>
+          <div class="field-container">
+            <label class="col-sm-4 control-label">Comments</label>
+            <div class="col-sm-8">
+              <div class="form-group">
+                <textarea ng-model="location.comments" class="form-control" rows="2" placeholder="Any other details related to pick up"></textarea>
+              </div>
+              <div ng-repeat="err in fieldErrors.comments">
+                <div class="inline-error">{{err}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="panel-footer" ng-if="shipment.permissions.can_change">
+    <div class="row">
+      <div class="col-md-3">
+      </div>
+      <div class="col-md-3"><button class="btn btn-xs btn-danger btn-block margin-xs" disable-on-promise="removeLocation(location)" ng-if="shipment.permissions.can_delete"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Delete location</button></div>
+      <div class="col-md-3"><button class="btn btn-xs btn-default btn-block margin-xs" ui-sref="^.load({})"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Load template</button></div>
+      <div class="col-md-3"><button class="btn btn-xs btn-primary btn-block margin-xs" disable-on-promise="update()"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Save location</button></div>
+    </div>
+  </div>
+</div>

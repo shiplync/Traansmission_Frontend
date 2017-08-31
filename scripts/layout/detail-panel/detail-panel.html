@@ -1,0 +1,20 @@
+<div ng-controller="ApplicationController">
+<div ng-init="init()" class="panel" ng-class="$ctrl.detailObj.inactive ? 'panel-danger' : 'panel-default'">
+  <div class="panel-heading detail-heading">
+    <div class="row">
+      <div class="col-sm-9">
+        <span ng-transclude="settingsAction"></span>
+        <!--<a href="" ng-if="isAuthorized($ctrl.settingsPermissions)" class="left-heading-control" ui-sref="user.settings({user: user.id})"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>-->
+        <span class="panel-title lead">{{$ctrl.headingTitle}}</span>
+      </div>
+      <div class="col-sm-3 pull-right">
+        <span ng-transclude="detailIsolateAction"></span>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div ng-transclude="detailContent"></div>
+  </div>
+  <div ng-transclude="subdetailContent"></div>
+</div>
+</div>

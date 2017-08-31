@@ -1,0 +1,51 @@
+<detail-panel detail-obj="user" heading-title="user.name">
+  <settings-action ng-click="toggleState('user.settings', {user: user.id})" ng-if="isAuthorized([P.changeGenericUser])"></settings-action>
+  <detail-isolate-action detail-id="user.id"></detail-isolate-action>
+
+  <detail-content>
+    <div class="row">
+      <div class="col-sm-3">
+        <img ng-if="!hasProfilePhoto(user)" src="images/profile_placeholder.png" class="profile-thumbnail">
+        <img ng-if="hasProfilePhoto(user)" ng-src="{{user.profile_photo.file_url}}" class="profile-thumbnail">
+      </div>
+      <div class="col-sm-9">
+        <div class="row">
+          <div class="col-sm-5">
+            <div class="detail-item" ng-if="user.inactive">
+              <div class="label label-danger">SUSPENDED</div>
+            </div>
+            <div class="detail-item">
+              <b>Email</b>
+              <div ng-show="user.email">{{user.email}}</div>
+              <div ng-hide="user.email"><span class="text-color-gray">No details</span></div>
+            </div>
+            <div class="detail-item">
+              <b>Phone</b>
+              <div ng-show="user.phone">{{user.phone.replace('+1','')}}</div>
+              <div ng-hide="user.phone"><span class="text-color-gray">No details</span></div>
+            </div>
+          </div>
+          <div class="col-sm-5">
+            <div class="detail-item">
+              <b>Role</b>
+              <div>{{user.user_type.label}}</div>
+            </div>
+            <div class="detail-item">
+              <b>Division</b>
+              <a href="" ng-if="isAuthorized([P.addCompanyDivisionMembership, P.deleteCompanyDivisionMembership]) && !user.user_type.is_manager" ui-sref="user.divisions({user: user.id, _show_all_divisions: true})"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+              <p ng-hide="user.division" class="text-color-gray">None</p>
+              <p ng-show="user.division">{{user.division.name}}</p>
+            </div>
+          </div>
+          <div class="col-sm-2">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </detail-content>
+
+  <subdetail-content>
+    <div ui-view="detail"></div>
+  </subdetail-content>
+</detail-panel>

@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-sm-4">
+    <p class="text-center">
+      <img ng-if="hasCompanyLogo(currentUser.company)" ng-src="{{currentUser.company.logo ? currentUser.company.logo.file_url : ''}}" alt="sometext" class="img-thumbnail">
+      <div ng-if="!hasCompanyLogo(currentUser.company)"class="image-with-text">{{company.company_name}}</div>
+    </p>
+    <input type="file" nv-file-select="" uploader="uploader">
+    <p class="text-danger" ng-show="err">{{err}}</p>
+  </div>
+  <div class="col-sm-8"></div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-sm-6">
+    <button ng-disabled="uploader.queue.length == 0" type="submit" class="btn btn-sm btn-primary btn-block" disable-on-promise="defferedUploadAll()">Update</button>
+  </div>
+  <div class="col-sm-6">
+    <button class="btn btn-sm btn-default btn-block" ui-sref="^.^">Back</button>
+  </div>
+</div>

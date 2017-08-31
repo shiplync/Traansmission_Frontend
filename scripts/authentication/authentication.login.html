@@ -1,0 +1,15 @@
+<div class="section-title">
+  <h2>Login</h2>
+</div>
+<form form-autofill-fix class="section-content auth-form">
+  <p class="text-danger" >{{ loginError }}</p>
+  <div class="form-group">
+    <input type="email" class="form-control input-sm" ng-model="credentials.username" placeholder="Email Address" required autofocus="">
+  </div>
+  <div class="form-group">
+    <input type="password" class="form-control input-sm" ng-model="credentials.password" placeholder="Password" required>
+  </div>
+  <button class="btn btn-lg btn-primary btn-block btn-sm" disable-on-promise="login(credentials)">Submit</button>  
+  <div class="help-block">Dont have an account? <a ui-sref='register.start' href="">Register here</a></div>
+  <div class="help-block">Forgot your password? <a ui-sref='resetpassword' href="">Reset your password here</a></div>
+</form>

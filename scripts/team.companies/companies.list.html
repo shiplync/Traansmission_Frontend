@@ -1,0 +1,18 @@
+<div ng-init="init()">
+  <div ng-if="!companies.length && !hasSearchParams() && !hasIdParam()">
+    <div ng-include="'scripts/team.companies/companies.list.empty-start.html'"></div>
+  </div>
+  <div ng-include="'scripts/team.companies/companies.list-create.html'" ng-if="isAuthorized([P.addCompanyInvite])"></div>
+  <div ng-if="!companies.length && hasSearchParams()">
+    <div ng-include="'scripts/companies/companies.list.empty-search.html'"></div>
+  </div>
+  <div ng-if="!companies.length && hasIdParam()">
+    <div ng-include="'scripts/layout/404.html'"></div>
+  </div>
+  <div dir-paginate="company in companies | itemsPerPage:companiesPerPage" total-items="totalCompanies" current-page="pagination.current" pagination-id="companies">
+    <div ng-include="'scripts/team.companies/companies.detail.html'" ng-controller="detailController"></div>
+    <!--<hr class="hr-dark">-->
+  </div>
+  <p class="text-color-gray pull-right" ng-if="totalCompanies > 1">Total: {{totalCompanies}} companies</p>
+  <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" pagination-id="companies"></dir-pagination-controls>
+</div>

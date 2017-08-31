@@ -1,0 +1,31 @@
+#edit-profile{
+    .caption{
+          margin-top:5px;
+        } 
+    #profile-form .shipper-form{
+        //width: 80%;
+        //margin: 0 auto;
+    }
+    #profile-form.photo-upload{
+      padding-bottom: 100px;
+      padding-top: 50px;
+    }
+    #profile-update-submit{       
+        max-width:400px;
+        margin: 0 auto;
+    }
+    #photo-upload-submit{       
+        max-width:500px;
+        margin: 0 auto;
+    }
+    #filePicker{
+      margin:auto;
+    }
+    #photo-upload-form{
+      text-align:center;
+    }
+     
+}
+#profile-photo-div img{
+    max-width:100%;
+}

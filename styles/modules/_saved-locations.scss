@@ -1,0 +1,20 @@
+#saved-locations-page{
+  font-size:16px;
+  i {
+    margin-right:5px;
+  }
+  .savedlocation-list-container{
+    border-top: 1px solid getColor(light-gray);
+  }
+  .savedlocation-detail-container{
+    border-bottom: 1px solid getColor(light-gray);
+  }
+  .modify-saved-locations{
+    padding-right:0px;
+    text-align:right;
+  }
+  .location-label{
+    padding-top: 10px;
+    padding-left: 5px;
+  }
+}

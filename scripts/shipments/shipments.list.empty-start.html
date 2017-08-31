@@ -1,0 +1,8 @@
+<div class="jumbotron" ng-show="isAuthorized([P.addShipment])">
+  <h1>Let's get started!</h1>
+  <p>
+    <span>Managing freight with Traansmission is a walk in the park.</span>
+    <span ng-show="isAuthorized([P.addShipment])">It takes 20 seconds to create a shipment and share it with people in or outside your company.</span>
+    <span ng-show="!isAuthorized([P.addShipment])">From here you can shipments that were shared with you.</span>
+  </p>
+</div>

@@ -1,0 +1,26 @@
+<div class="panel-body detail-body">
+  <div class="row">
+    <div class="col-sm-9">
+      <div id="panel">
+      </div>
+      <map id="google-map" center="40.1451,-99.6680" zoom="2">
+      </map>
+    </div>      
+    <div class="col-sm-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">Tracking updates</div>
+        <div class="tracking-update-list">
+          <div ng-repeat="update in trackingUpdates" ng-mouseover="addHighlightTrackingUpdate(update)" ng-mouseleave="removeHighlightTrackingUpdate(update)" ng-show="trackingUpdates.length">
+            <div id="{{update.timestamp}}" ng-class="getTrackingUpdateClass(update)" ng-show="update.showInList">
+              <strong ng-show="update.title">{{update.title}}</strong>
+              <p ng-show="update.body">{{update.body}}</p>
+            </div>
+          </div>
+          <div ng-hide="trackingUpdates.length" class="tracking-update-list-no-updates">
+            <strong>No tracking updates</strong>
+          </div>      
+        </div>                    
+      </div>
+    </div> 
+  </div> 
+</div>

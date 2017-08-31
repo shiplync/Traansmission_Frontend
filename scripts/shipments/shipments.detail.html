@@ -1,0 +1,104 @@
+<detail-panel detail-obj="shipment" heading-title="shipment.delivery_status.label">
+  <settings-action ng-click="toggleState('shipment.settings', {shipment: shipment.id})" ng-if="shipment.permissions.can_change"></settings-action>
+  <detail-isolate-action detail-id="shipment.id"></detail-isolate-action>
+  <detail-content>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="detail-item pointer" ng-show="shipment.trip_distance" ng-class="highlightState('shipment.trip', {shipment: shipment.id})" ng-click="toggleState('shipment.trip', {shipment: shipment.id})">
+          <img src="images/mapicon.png" style="width: 35px"> 
+          <span class="text-color-gray"> View map</span>
+        </div>
+        <div ng-repeat="location in shipment.locations">
+          <div class="detail-item" ng-class="highlightState('shipment.location', {shipment: shipment.id, location: location.id})">
+            <b>{{location.location_type.label}}</b> <span ng-show="location.arrival_time" ng-class="location.arrival_time <= location.time_range.time_range_end ? 'c-success' : 'c-warning'" class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span><br>
+            <button ui-sref="shipment.location.edit({shipment: shipment.id, location: location.id})" ng-hide="location.address_details.city && location.address_details.state && location.time_range.time_range_end" class="btn btn-xs btn-primary">Add location and time</button>
+            <div ng-show="location.address_details.city && location.address_details.state && location.time_range.time_range_end" class="pointer" ng-click="toggleState('shipment.location', {shipment: shipment.id, location: location.id})">
+              {{location.address_details.city}}, {{location.address_details.state}}<br>
+              {{location.time_range.time_range_end | displayDate: location.time_range.tz}}
+              <span class="text-color-gray">{{location.time_range.tz}}</span>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div ng-if="shipment.permissions.can_change" class="detail-item">
+          <button href="" class="btn btn-default btn-xs" disable-on-promise="addLocation()"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add location</button>
+        </div>
+      </div>
+      <div class="col-sm-4">
+
+        <div class="detail-item" ng-class="highlightState('shipment.cost', {shipment: shipment.id})">
+          <b>Cost <span ng-if="shipment.permissions.can_change" class="glyphicon glyphicon-edit pointer" aria-hidden="true" ng-click="toggleState('shipment.cost.edit', {shipment: shipment.id}, 3)"></span></b><br>
+          <span ng-show="shipment.payout_info.payout > 0">
+            <span class="text-color-gray">Total cost: </span> {{shipment.payout_info.payout | currency : $ }}
+          </span>
+          <span ng-show="shipment.payout_info.payout > 0 && shipment.trip_distance > 0">
+            <br><span class="text-color-gray">Cost pr. mile: </span> {{shipment.payout_info.payout / outputLengthNumber(shipment.trip_distance) | currency : $ }}
+          </span>
+          <div ng-hide="shipment.payout_info.payout > 0">
+            <button ui-sref="shipment.cost.edit({shipment: shipment.id})" class="btn btn-xs btn-primary">Add total cost</button>
+          </div>
+        </div>
+
+        <div class="detail-item" ng-show="shipment.trip_distance">
+          <b>Travel distance</b><br>
+          {{outputLength(shipment.trip_distance).value}}<span class="text-color-gray"> miles</span>
+        </div>
+
+        <div class="detail-item" ng-class="highlightState('shipment.equipment', {shipment: shipment.id})">
+          <b>Equipment <span ng-if="shipment.permissions.can_change" class="glyphicon glyphicon-edit pointer" aria-hidden="true" ng-click="toggleState('shipment.equipment.edit', {shipment: shipment.id}, 3)"></span></b><br>
+          <div ng-show="shipment.equipmenttags.length">
+            <span ng-repeat="tag in shipment.equipmenttags">
+              {{tag.tag_type_label}}<br>
+            </span>  
+          </div>
+          <div ng-hide="shipment.equipmenttags.length">
+            <button ng-if="shipment.permissions.can_change" ui-sref="shipment.equipment.edit({shipment: shipment.id})" class="btn btn-xs btn-primary">Add equipment</button>
+            <span ng-if="!shipment.permissions.can_change" class="text-color-gray">No equipment information</span>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-sm-4">
+        <div class="detail-item" ng-if="shipment.owner">
+          <span ng-show="shipment.owner_user"><b>Created by</b> <br>{{shipment.owner_user.name}}, {{shipment.owner.company_name}}</span>
+        </div>
+
+        <div ng-if="isAuthorized([P.viewShipmentAssignment])" class="detail-item" ng-class="highlightState('shipment.teamassignments', {shipment: shipment.id})">
+          <b>Team access</b><br>
+          <button ng-click="toggleState('shipment.assigninternal', {shipment: shipment.id})" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Internal</button>
+          <button ng-click="toggleState('shipment.assignexternal', {shipment: shipment.id})" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> Partners</button>
+          <!--<a href="" ng-click="toggleState('shipment.teamassignments', {shipment: shipment.id})">
+            Team access to shipment
+          </a>-->
+        </div>
+
+        <div ng-if="isAuthorized([P.viewShipmentAssignment])" class="detail-item" ng-class="highlightState('shipment.teamassignments', {shipment: shipment.id})">
+          <b>Assigned driver</b><br>
+          <!--Company: <span class="text-color-gray">None assigned</span><br>-->
+          <div ng-hide="shipment.assigned_driver"><span class="text-color-gray">None assigned</span></div>
+          <div ng-show="shipment.assigned_driver">{{shipment.assigned_driver.name}}</div>
+          <!--<a href="" ng-click="toggleState('shipment.teamassignments', {shipment: shipment.id})">
+            Team access to shipment
+          </a>-->
+        </div>
+
+        <!--<div ng-if="shipment.permissions.can_change" class="detail-item" ng-class="highlightState('shipment.assignments', {shipment: shipment.id})">
+          <b>Connection publish status</b><br>
+          <div ng-show="shipment.assigned_companies_count">
+            <a href="" ng-click="toggleState('shipment.assignments.edit', {shipment: shipment.id}, 3)">
+              Published to {{shipment.assigned_companies_count}} {{shipment.assigned_companies_count==1?'company':'companies'}}
+            </a>
+          </div>
+          <div ng-hide="shipment.assigned_companies_count">
+            <button ui-sref="shipment.assignments.edit({shipment: shipment.id})" class="btn btn-xs btn-primary">Publish to connections</button>
+            <br><span class="text-color-gray">This shipment is not published to any connections</span>
+          </div>
+        </div>-->
+        
+      </div>
+    </div>
+  </detail-content>
+  <subdetail-content>
+    <div ui-view="detail"></div>
+  </subdetail-content>
+</detail-panel>

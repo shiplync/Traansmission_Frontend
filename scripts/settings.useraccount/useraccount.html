@@ -1,0 +1,35 @@
+<div ng-init="init()">
+  <div class="row">
+    <div class="col-sm-3">
+      <p class="text-center">
+        <img ng-if="!hasProfilePhoto(currentUser)" src="images/profile_placeholder.png" class="img-thumbnail">
+        <img ng-if="hasProfilePhoto(currentUser)" ng-src="{{currentUser.profile_photo.file_url}}" class="img-thumbnail">
+      </p>
+    </div>
+    <div class="col-sm-6">
+      <h2 class="no-top-margin">{{user.first_name}} {{user.last_name}}</h2>
+      <dl class="dl-horizontal">
+        <br>
+        <div ng-show="user.company.company_name">
+          <dt>Company</dt>
+          <dd><a href="" ui-sref="companyaccount">{{user.company.company_name}}</a></dd>
+        </div>
+        <div ng-show="user.email">
+          <dt>Email</dt>
+          <dd>{{user.email}}</dd>
+        </div>
+        <div ng-show="user.phone">
+          <dt>Phone</dt>
+          <dd>{{user.phone.replace('+1','')}}</dd>
+        </div>
+        <div ng-show="user.user_type">
+          <dt>Role</dt>
+          <dd>{{user.user_type.label}}</dd>
+        </div>
+      </dl>
+    </div>
+    <div class="col-sm-3">
+      <h3><span class="glyphicon glyphicon-edit pull-right pointer" aria-hidden="true" ui-sref="useraccount.edit.basic"></span></h3>
+    </div>
+  </div>
+</div>

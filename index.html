@@ -1,0 +1,270 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Expires" content="Mon, 16 Mar 2015 05:00:00 GMT">
+    <meta http-equiv="Pragma" content="no-cache">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <link rel="stylesheet" href="bower_components/jquery-ui/themes/flick/jquery-ui.min.css">
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/angular-motion/dist/angular-motion.css" />
+    <link rel="stylesheet" href="bower_components/seiyria-bootstrap-slider/dist/css/bootstrap-slider.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+   <!-- start Mixpanel --><script type="text/javascript">(function(f,b){if(!b.__SV){var a,e,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;a.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";e=f.getElementsByTagName("script")[0];e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
+mixpanel.init("YOUR TOKEN");</script><!-- end Mixpanel -->
+  </head>
+  <body ng-app="shippersPortalApp">
+    <!--[if lt IE 9]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div ng-include="'views/navbar.html?version=2'"></div>
+    <div class="container-fluid" id="root-element" ng-controller="ApplicationController">
+          <div ui-view></div>
+    </div>
+      <!--  <div ng-view="" class="main-view fx-fade-down fx-easing-back fx-speed-300"></div> -->
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-45883867-1', 'auto');
+    </script>
+    <!-- build:js(.) scripts/oldieshim.js -->
+    <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+    <!-- endbuild -->
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9ARAXNbb6hyJMMHgGocIDvi6LQXHQS3Y">
+    </script>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/json3/lib/json3.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/moment-timezone/builds/moment-timezone-with-data-2010-2020.js"></script>
+    <script src="bower_components/lodash/lodash.js"></script>
+    <script src="bower_components/gsap/src/uncompressed/TweenMax.js"></script>
+    <script src="bower_components/ngFx/dist/ngFx.js"></script>
+    <script src="bower_components/jquery-ui/ui/jquery-ui.js"></script>
+    <script src="bower_components/angular-ui-slider/src/slider.js"></script>
+    <script src="bower_components/angular-simple-logger/dist/angular-simple-logger.js"></script>
+    <script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
+    <script src="bower_components/ngstorage/ngStorage.js"></script>
+    <script src="bower_components/angular-strap/dist/angular-strap.js"></script>
+    <script src="bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
+    <script src="bower_components/angularjs-geolocation/src/geolocation.js"></script>
+    <script src="bower_components/angular-modal-service/dst/angular-modal-service.js"></script>
+    <script src="bower_components/angular-file-upload/dist/angular-file-upload.min.js"></script>
+    <script src="bower_components/ngmap/build/scripts/ng-map.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angularUtils-pagination/dirPagination.js"></script>
+    <script src="bower_components/checklist-model/checklist-model.js"></script>
+    <script src="bower_components/seiyria-bootstrap-slider/dist/bootstrap-slider.js"></script>
+    <script src="bower_components/angular-bootstrap-slider/slider.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+    <script src="config/config.js"></script>
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <!--<script src="scripts/services/shipments.js"></script>-->
+    <!--
+    <script src="scripts/services/shipments-full.js"></script>
+    <script src="scripts/services/auth.js"></script>
+    <script src="scripts/controllers/list-shipments.js"></script>
+    <script src="scripts/controllers/edit-shipment/edit-equipment.js"></script>
+    <script src="scripts/controllers/edit-shipment/edit-cost.js"></script>
+    <script src="scripts/controllers/edit-shipment/edit-share.js"></script>
+    <script src="scripts/controllers/edit-shipment/edit-locations.js"></script>
+    <script src="scripts/controllers/company-relations.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/about.js"></script>
+    <script src="scripts/controllers/shipments.js"></script>
+    <script src="scripts/services/locations.js"></script>
+    <script src="scripts/services/shippers.js"></script>
+    <script src="scripts/controllers/allshipments.js"></script>
+    <script src="scripts/controllers/singleshipment.js"></script>
+    <script src="scripts/services/delivery_constants.js"></script>
+    <script src="scripts/services/singleshipmentreference.js"></script>
+    <script src="scripts/controllers/register.js"></script>
+    <script src="scripts/controllers/login.js"></script>
+    <script src="scripts/controllers/forgotpassword.js"></script>
+    <script src="/scripts/controllers/verifyUser.js"></script>
+    <script src="scripts/controllers/profile.js"></script>
+    <script src="scripts/services/authinceptor.js"></script>
+    <script src="scripts/controllers/shipment.js"></script>
+    <script src="scripts/services/shippers.js"></script>
+    <script src="scripts/services/geocoder.js"></script>
+    <script src="scripts/services/timeFunctions.js"></script>
+    <script src="scripts/controllers/carrier-registration.js"></script>
+    <script src="scripts/controllers/shipper-registration.js"></script>
+    <script src="scripts/services/carriers.js"></script>
+    <script src="scripts/controllers/shippers/shipment-actions.js"></script>
+    <script src="scripts/controllers/carriers/shipment-actions.js"></script>
+    <script src="scripts/controllers/shippers/pending-carrier.js"></script>
+    <script src="scripts/controllers/carriers/pending-carrier.js"></script>
+    <script src="scripts/controllers/tos.js"></script>
+    <script src="scripts/controllers/change-password.js"></script>
+    <script src="scripts/controllers/carrier-photo.js"></script>
+    <script src="scripts/services/shipments-factory.js"></script>
+    <script src="scripts/services/shipment-sorting.js"></script>
+    <script src="scripts/controllers/savedlocations.js"></script>
+    <script src="scripts/controllers/shippers/saved-locations/update.js"></script>
+    <script src="scripts/controllers/routemap.js"></script>
+    <script src="scripts/services/geolocations.js"></script>
+    <script src="scripts/controllers/shipment-assignments.js"></script>
+    <script src="scripts/services/shipment-assignments.js"></script>
+    <script src="scripts/controllers/edit-shipment/edit-shipment.js"></script>
+    <script src="scripts/services/company-relations.js"></script>
+    <script src="scripts/services/company.js"></script>
+    <script src="scripts/services/countrylist.js"></script>
+    -->
+    <script src="scripts/services/time_format.js"></script>
+    <script src="scripts/controllers/navbar.js"></script>
+    <script src="scripts/services/user.js"></script>
+    <script src="scripts/services/errdesc.js"></script>
+    <script src="scripts/services/types.js"></script>
+    <script src="scripts/services/state_list.js"></script>
+    <script src="scripts/directives/text-form-field.js"></script>
+    <script src="scripts/directives/text-form-field-nolabel.js"></script>
+    <script src="scripts/directives/convert-to-number.js"></script>
+    <script src="scripts/directives/text-label-field.js"></script>
+    <script src="scripts/directives/display-date.js"></script>
+    <script src="scripts/config/auth-handler.js"></script>
+    <script src="scripts/constants/permission-type.js"></script>
+    <script src="scripts/services/permissions.js"></script>
+    <script src="scripts/shipments/shipments.js"></script>
+    <script src="scripts/shipments/shipments.list-controller.js"></script>
+    <script src="scripts/shipments/shipments.detail-controller.js"></script>
+    <script src="scripts/shipments/shipments-service.js"></script>
+    <script src="scripts/shipments/shipments.control-controller.js"></script>
+    <script src="scripts/constants/delivery-status.js"></script>
+    <script src="scripts/constants/company-type.js"></script>
+    <script src="scripts/constants/access-block-type.js"></script>
+    <script src="scripts/constants/user-type.js"></script>
+    <script src="scripts/config/application-controller.js"></script>
+    <script src="scripts/config/analytics.js"></script>
+    <script src="scripts/shared/conversion.js"></script>
+    <script src="scripts/shipments.locations/locations.js"></script>
+    <script src="scripts/shipments.locations/locations-service.js"></script>
+    <script src="scripts/shipments.locations/locations-controller.js"></script>
+    <script src="scripts/shipments.equipment/equipment.js"></script>
+    <script src="scripts/shipments.equipment/equipment-service.js"></script>
+    <script src="scripts/shipments.equipment/equipment-controller.js"></script>
+    <script src="scripts/shipments.cost/cost.js"></script>
+    <script src="scripts/shipments.cost/cost-service.js"></script>
+    <script src="scripts/shipments.cost/cost-controller.js"></script>
+    <script src="scripts/shipments.settings/settings.js"></script>
+    <script src="scripts/shipments.settings/settings-service.js"></script>
+    <script src="scripts/shipments.settings/settings-controller.js"></script>
+    <script src="scripts/authentication/authentication.js"></script>
+    <script src="scripts/authentication/authentication-service.js"></script>
+    <script src="scripts/authentication/authentication.registeruser-controller.js"></script>
+    <script src="scripts/authentication/authentication.login-controller.js"></script>
+    <script src="scripts/authentication/authentication.resetpassword-controller.js"></script>
+    <script src="scripts/directives/disable-on-promise.js"></script>
+    <script src="scripts/geoservices/geocoder-service.js"></script>
+    <script src="scripts/geoservices/distance-service.js"></script>
+    <script src="scripts/geoservices/cache-service.js"></script>
+    <script src="scripts/shipments.trip/trip.js"></script>
+    <script src="scripts/shipments.trip/trip-service.js"></script>
+    <script src="scripts/shipments.trip/trip-controller.js"></script>
+    <script src="scripts/settings/settings.js"></script>
+    <script src="scripts/settings/settings-service.js"></script>
+    <script src="scripts/settings/settings.control-controller.js"></script>
+    <script src="scripts/settings.useraccount/useraccount.js"></script>
+    <script src="scripts/settings.useraccount/useraccount-service.js"></script>
+    <script src="scripts/settings.useraccount/useraccount-controller.js"></script>
+    <script src="scripts/settings.companyaccount/companyaccount.js"></script>
+    <script src="scripts/settings.companyaccount/companyaccount-service.js"></script>
+    <script src="scripts/settings.companyaccount/companyaccount-controller.js"></script>
+    <script src="scripts/directives/thumb-preview.js"></script>
+    <script src="scripts/temlocations/temlocations.js"></script>
+    <script src="scripts/temlocations/temlocations-service.js"></script>
+    <script src="scripts/temlocations/temlocations.control-controller.js"></script>
+    <script src="scripts/temlocations/temlocations.detail-controller.js"></script>
+    <script src="scripts/temlocations/temlocations.list-controller.js"></script>
+    <script src="scripts/shipments.locations.load/load.js"></script>
+    <script src="scripts/shipments.locations.load/load-controller.js"></script>
+    <script src="scripts/team/team.js"></script>
+    <script src="scripts/team/team-service.js"></script>
+    <script src="scripts/team/team.control-controller.js"></script>
+    <script src="scripts/team.divisions/divisions.js"></script>
+    <script src="scripts/team.divisions/divisions-service.js"></script>
+    <script src="scripts/team.divisions/divisions.control-controller.js"></script>
+    <script src="scripts/team.divisions/divisions.detail-controller.js"></script>
+    <script src="scripts/team.divisions/divisions.list-controller.js"></script>
+    <script src="scripts/team.divisions.settings/settings.js"></script>
+    <script src="scripts/team.divisions.settings/settings-controller.js"></script>
+    <script src="scripts/team.users/users.js"></script>
+    <script src="scripts/team.users/users-service.js"></script>
+    <script src="scripts/team.users/users.control-controller.js"></script>
+    <script src="scripts/team.users/users.detail-controller.js"></script>
+    <script src="scripts/team.users/users.list-controller.js"></script>
+    <script src="scripts/team.users.settings/settings.js"></script>
+    <script src="scripts/team.users.settings/settings-controller.js"></script>
+    <script src="scripts/team.userinvites/userinvites.js"></script>
+    <script src="scripts/team.userinvites/userinvites-service.js"></script>
+    <script src="scripts/team.userinvites/userinvites.control-controller.js"></script>
+    <script src="scripts/team.userinvites/userinvites.detail-controller.js"></script>
+    <script src="scripts/team.userinvites/userinvites.list-controller.js"></script>
+    <script src="scripts/team.users.divisions/divisions.js"></script>
+    <script src="scripts/team.users.divisions/divisions-controller.js"></script>
+    <script src="scripts/team.divisions.members/members.js"></script>
+    <script src="scripts/team.divisions.members/members-controller.js"></script>
+    <script src="scripts/controls/ordering/ordering.js"></script>
+    <script src="scripts/controls/back/back.js"></script>
+    <script src="scripts/controls/clear/clear.js"></script>
+    <script src="scripts/shared/base-service.js"></script>
+    <script src="scripts/layout/detail-panel/detail-panel.js"></script>
+    <script src="scripts/layout/detail-panel/settings-action.js"></script>
+    <script src="scripts/layout/detail-panel/detail-isolate-action.js"></script>
+    <script src="scripts/freight/freight.js"></script>
+    <script src="scripts/freight/freight.control-controller.js"></script>
+    <script src="scripts/team.companies/companies.js"></script>
+    <script src="scripts/team.companies/companies-service.js"></script>
+    <script src="scripts/team.companies/companies.control-controller.js"></script>
+    <script src="scripts/team.companies/companies.detail-controller.js"></script>
+    <script src="scripts/team.companies/companies.list-controller.js"></script>
+    <script src="scripts/team.companyinvites/companyinvites.js"></script>
+    <script src="scripts/team.companyinvites/companyinvites-service.js"></script>
+    <script src="scripts/team.companyinvites/companyinvites.control-controller.js"></script>
+    <script src="scripts/team.companyinvites/companyinvites.detail-controller.js"></script>
+    <script src="scripts/team.companyinvites/companyinvites.list-controller.js"></script>
+    <script src="scripts/shipments.assigninternal/assigninternal.js"></script>
+    <script src="scripts/shipments.assigninternal/assigninternal-controller.js"></script>
+    <script src="scripts/shipments.assigninternal/assigninternal-service.js"></script>
+    <script src="scripts/shipments.assignexternal/assignexternal.js"></script>
+    <script src="scripts/shipments.assignexternal/assignexternal-controller.js"></script>
+    <script src="scripts/shipments.assignexternal/assignexternal-service.js"></script>
+    <script src="scripts/authentication.register/register.js"></script>
+    <script src="scripts/authentication.register/register-service.js"></script>
+    <script src="scripts/authentication.register/register.user-controller.js"></script>
+    <script src="scripts/authentication.register/register.company-controller.js"></script>
+    <script src="scripts/authentication.register/register.subscription-controller.js"></script>
+    <!-- endbuild -->
+</body>
+</html>

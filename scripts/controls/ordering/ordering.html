@@ -1,0 +1,24 @@
+<div ng-controller="ApplicationController" ng-hide="hasIdParam() && !$ctrl.isNestedView">
+  <p><b>Order by</b></p>
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="input-group">
+        <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$ctrl.orderingLabels[$ctrl.ordering]}} <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <li ng-repeat="(value, label) in $ctrl.orderingLabels">
+            <a href="" ng-click="$ctrl.setOrdering(value)">{{label}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-6 padded-top-bottom-xs">
+      <label class="radio-inline">
+        <input type="radio" ng-model="$ctrl.orderAsc" ng-value="false" ng-click="$ctrl.setOrdering($ctrl.ordering)"> <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+      </label>
+      <label class="radio-inline">
+        <input type="radio" ng-model="$ctrl.orderAsc" ng-value="true" ng-click="$ctrl.setOrdering($ctrl.ordering)"> <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+      </label>
+    </div>
+  </div>
+  <br>
+</div>

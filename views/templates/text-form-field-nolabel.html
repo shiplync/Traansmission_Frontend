@@ -1,0 +1,6 @@
+<div class="form-group" ng-class="hasWarning ? 'has-warning' :''">
+  <input type="text" class="form-control input-sm" ng-minlength="2" ng-model="modelName" placeholder="{{placeholder}}"/>
+  <div ng-repeat="err in errors">
+    <div class="inline-error">{{err}}</div>
+  </div>
+</div>

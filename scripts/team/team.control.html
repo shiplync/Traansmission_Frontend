@@ -1,0 +1,15 @@
+<div class="padded-top-bottom" ng-init="init()">
+  <div ui-view="control"></div>
+  <p><b>Your company</b></p>
+  <ul class="nav nav-pills nav-stacked">
+    <li role="presentation" ng-class="highlightState('users', {})"><a href="" ui-sref="users">People</a></li>
+    <li role="presentation" ng-class="highlightState('divisions', {})"><a href="" ui-sref="divisions">Divisions</a></li>
+    <li role="presentation" ng-class="highlightState('userinvites', {})" ng-if="isAuthorized([P.addUserInvite])"><a href="" ui-sref="userinvites">Invited people</a></li>
+  </ul>
+  <br>
+  <p><b>Partner companies</b></p>
+  <ul class="nav nav-pills nav-stacked">
+    <li role="presentation" ng-class="highlightState('companies', {})"><a href="" ui-sref="companies">Companies</a></li>
+    <li role="presentation" ng-class="highlightState('companyinvites', {})" ng-if="isAuthorized([P.addUserInvite])"><a href="" ui-sref="companyinvites">Invited companies</a></li>
+  </ul>
+</div>

@@ -1,0 +1,35 @@
+<div ng-init="init()">
+  <div class="panel-body detail-body">
+    <b><p>Divisions members</p></b>
+    <div class="well inner-scroll-view">
+      <div ng-if="!users.length" class="">
+        <h4>No people to show</h4>
+      </div>
+      <table class="table" ng-if="users.length">
+        <tr class="active">
+          <th><b>Name</b></th> 
+          <th><b>Role</b></th>
+          <th><b>Member status</b></th>
+          <th ng-if="isAuthorized([P.addCompanyDivisionMembership, P.deleteCompanyDivisionMembership])">
+            <b>Action</b>
+          </th>
+        </tr>
+        <tr dir-paginate="(idx, user) in users | itemsPerPage:usersPerPage" total-items="totalUsers" current-page="pagination.current" pagination-id="divisionmembers">
+          <td>{{user.name}}</td>
+          <td>{{user.user_type.label}}</td>
+          <td>
+            <div class="label label-success label-xs" ng-if="user.division_membership">Is member</div>
+            <div class="label label-warning label-xs" ng-if="!user.division_membership">Not member</div>
+          </td>
+          <td ng-if="isAuthorized([P.addCompanyDivisionMembership, P.deleteCompanyDivisionMembership])">
+            <button class="btn btn-danger btn-xs button-width-md" disable-on-promise="removeUserFromDivision(user.division_membership)" ng-if="user.division_membership">Remove from division</button>
+            <button class="btn btn-primary btn-xs button-width-md" disable-on-promise="assignUserToDivision(user)" ng-if="!user.division_membership && !user.user_type.is_manager">Assign to division</button>
+            <button class="btn btn-primary btn-xs button-width-md" ng-if="!user.division_membership && user.user_type.is_manager" disabled>Assign to division</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <p class="text-color-gray pull-right" ng-if="totalUsers > 1">Total: {{totalUsers}} people</p>
+    <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" pagination-id="divisionmembers"></dir-pagination-controls>
+  </div>
+</div>

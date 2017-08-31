@@ -1,0 +1,18 @@
+<div ng-init="init()">
+  <div ng-if="!divisions.length && !hasSearchParams() && !hasIdParam()">
+    <div ng-include="'scripts/team.divisions/divisions.list.empty-start.html'"></div>
+  </div>
+  <div ng-include="'scripts/team.divisions/divisions.list-create.html'" ng-if="isAuthorized([P.addCompanyDivision])"></div>
+  <div ng-if="!divisions.length && hasSearchParams()">
+    <div ng-include="'scripts/team.divisions/divisions.list.empty-search.html'"></div>
+  </div>
+  <div ng-if="!divisions.length && hasIdParam()">
+    <div ng-include="'scripts/layout/404.html'"></div>
+  </div>
+  <div dir-paginate="division in divisions | itemsPerPage:divisionsPerPage" total-items="totalDivisions" current-page="pagination.current" pagination-id="divisions">
+    <div ng-include="'scripts/team.divisions/divisions.detail.html'" ng-controller="detailController"></div>
+    <!--<hr class="hr-dark">-->
+  </div>
+  <p class="text-color-gray pull-right" ng-if="totalDivisions > 1">Total: {{totalDivisions}} divisions</p>
+  <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" pagination-id="divisions"></dir-pagination-controls>
+</div>

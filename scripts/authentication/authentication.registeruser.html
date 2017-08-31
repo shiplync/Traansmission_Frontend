@@ -1,0 +1,32 @@
+<br>
+<br>
+<br>
+<div class="container" ng-init="init()">
+  <div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+      <div class="wrapper" ng-if="invite">
+        <h2>Welcome {{invite.name}}!</h2>
+        <p class="lead">Please choose a password below to get started with Traansmission.</p>
+        <div class="form-group">
+          <form>
+            <div class="form-group">
+              <input type="password" class="form-control" ng-model="password" placeholder="Password" required>
+            </div>
+            <p class="text-danger padding-top-bottom" >{{ registerError }}</p>
+            <button class="btn btn-lg btn-primary btn-block btn-sm" type="submit" disable-on-promise="setPassword(password)">Submit</button>
+            <p class="inline-error" ng-if="setPasswordError && setPasswordError.detail">{{setPasswordError.detail}}</p>
+          </form>
+        </div>
+      </div>
+      <div class="wrapper" ng-if="invite==undefined && retrieveInviteError">
+        <h2>You cannot register using this link</h2>
+        <p class="lead" ng-if="retrieveInviteError.detail">Reason: {{retrieveInviteError.detail}}</p>
+        <p class="lead">Please contact the administrator of your team if this is unexpected.</p>
+      </div>
+    </div>
+    <div class="col-sm-3"></div>
+  </div>
+</div>
+<br>
+<br>

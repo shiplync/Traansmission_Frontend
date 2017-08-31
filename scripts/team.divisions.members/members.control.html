@@ -1,0 +1,14 @@
+<div ng-init="init()">
+  <form>
+    <div class="checkbox">
+      <label>
+      <input type="checkbox" ng-model="params._show_all_users" ng-true-value="undefined" ng-false-value="'true'" ng-change="setFilters()"> Show <b>members</b> only
+      </label>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" ng-model="params._show_all_users" ng-true-value="'true'" ng-false-value="undefined" ng-change="setFilters()"> Show <b>all</b> people
+      </label>
+    </div>
+  </form>
+</div>

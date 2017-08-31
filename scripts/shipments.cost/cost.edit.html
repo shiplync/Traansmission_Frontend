@@ -1,0 +1,28 @@
+<div ng-init="init()">
+  <div class="panel-body detail-body">
+    <h4>Total cost</h4>
+    <div class="field-container">
+      <div class="col-sm-4">
+        <div class="input-group">
+          <span class="input-group-addon">$</span>
+          <input type="text" class="form-control" placeholder="Not set" ng-model="cost">
+        </div>
+        <div ng-repeat="err in fieldErrors.payout_info.payout">
+          <div class="inline-error">{{err}}</div>
+        </div>
+      </div>
+      <div class="col-sm-8"></div>
+    </div>
+    <!--<p>Leave blank if you do not wish to show a price</p>-->
+    <p class="text-color-gray">Leave at 0 if you do not wish to show a price</p>
+  </div>
+  <div class="panel-footer" ng-if="shipment.permissions.can_change">
+      <div class="row">
+        <div class="col-md-9">
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-xs btn-primary btn-block margin-xs" disable-on-promise="updateCost(shipment.id, cost)"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Save cost</button>
+        </div>
+      </div>
+    </div>
+</div>  

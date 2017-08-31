@@ -1,0 +1,40 @@
+<div ng-init="init()">
+  <div class="panel-body detail-body">
+    <b><p>Partner companies with access to this shipment</p></b>
+    <div class="well inner-scroll-view">
+      <div ng-if="!companies.length" class="">
+        <h4>No companies to show</h4>
+      </div>
+      <table class="table" ng-if="companies.length">
+        <tr class="active">
+          <th><b>Company name</b></th>
+          <th><b>Type</b></th>
+          <th><b>DOT</b></th>
+          <th><b>Access status</b></th>
+          <th ng-if="isAuthorized([P.addShipmentAssignment, P.deleteShipmentAssignment])">
+            <b>Access</b>
+          </th>
+        </tr>
+        <tr dir-paginate="(idx, company) in companies | itemsPerPage:companiesPerPage" total-items="totalCompanies" current-page="pagination.current" pagination-id="assignexternal">
+          <td>{{company.company_name}}</td>
+          <td>{{company.company_type.label}}</td>
+          <td>
+            <span ng-if="company.dot">{{company.dot}}</span>
+            <span ng-if="!company.dot" class="text-color-gray">None</span>
+          </td>
+          <td>
+            <div class="label label-success label-xs" ng-if="company.shipment_access">Has access</div>
+            <div class="label label-warning label-xs" ng-if="!company.shipment_access">No access</div>
+          </td>
+          <td ng-if="isAuthorized([P.addShipmentAssignment, P.deleteShipmentAssignment])">
+            <button class="btn btn-danger btn-xs button-width-md" disable-on-promise="removeShipmentAssignment(company.shipment_assignment.id)" ng-if="company.shipment_assignment">Revoke access</button>
+            <button class="btn btn-primary btn-xs button-width-md" disable-on-promise="addShipmentAssignment(company)" ng-if="!company.shipment_assignment && !company.shipment_access">Grant access</button>
+            <button class="btn btn-primary btn-xs button-width-md disabled" ng-if="!company.shipment_assignment && company.shipment_access">Grant access</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <p class="text-color-gray pull-right" ng-if="totalCompanies > 1">Total: {{totalCompanies}} companies</p>
+    <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" pagination-id="assignexternal"></dir-pagination-controls>
+  </div>
+</div>

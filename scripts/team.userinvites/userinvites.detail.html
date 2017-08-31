@@ -1,0 +1,18 @@
+<detail-panel detail-obj="userinvite" heading-title="userinvite.name">
+  <detail-content>
+    <div class="row">
+      <div class="col-sm-4">
+        <b>Email</b>
+        <p>{{userinvite.email}}</p>
+      </div>
+      <div class="col-sm-4">
+        <b>Role</b>
+        <p>{{userinvite.user_type.label}}</p>
+      </div>
+      <div class="col-sm-4">
+        <button class="btn btn-danger btn-xs pull-right" disable-on-promise="deleteUserinvite(userinvite)" ng-if="isAuthorized([P.deleteUserInvite])"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Cancel invite</button>
+      </div>
+    </div>
+  </detail-content>
+  <subdetail-content></subdetail-content>
+</detail-panel>

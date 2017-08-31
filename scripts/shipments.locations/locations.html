@@ -1,0 +1,104 @@
+<div ng-init="init()">
+  <div class="panel-body detail-body">
+    <div class="row">
+      <div class="col-sm-4">
+        <p>
+
+        </p>
+        <h4>Company</h4>
+        <p ng-show="location.company_name">{{location.company_name}}</p>
+        <p class="text-color-gray" ng-hide="location.company_name">
+          No details
+        </p>
+        <h4>Address details</h4>
+        <p ng-show="location.address_details.address || location.address_details.address_2 || location.address_details.city || location.address_details.state || location.address_details.zip_code">
+          <span ng-show="location.address_details.address">{{location.address_details.address}}<br></span>
+          <span ng-show="location.address_details.address_2">{{location.address_details.address_2}}<br></span>
+          <span ng-show="location.address_details.city">{{location.address_details.city}} </span>
+          <span ng-show="location.address_details.state">{{location.address_details.state}} </span>
+          <span ng-show="location.address_details.zip_code">{{location.address_details.zip_code}}</span>
+        </p>
+        <p class="text-color-gray" ng-hide="location.address_details.address || location.address_details.address_2 || location.address_details.city || location.address_details.state || location.address_details.zip_code">
+          No details
+        </p>
+        <h4>Contact</h4>
+        <p ng-show="location.contact.first_name || location.contact.last_name || location.contact.email || location.contact.phone">
+          <span ng-show="location.contact.first_name || location.contact.last_name">
+            <span ng-show="location.contact.first_name">{{location.contact.first_name}} </span>
+            <span ng-show="location.contact.last_name">{{location.contact.last_name}}</span>
+            <br>
+          </span>
+          <span ng-show="location.contact.email"><a href="mailto:location.contact.email">{{location.contact.email}}</a><br></span>
+          <span ng-show="location.contact.phone">Phone: {{location.contact.phone.replace('+1','')}}</span>
+        </p>
+        <p class="text-color-gray" ng-hide="location.contact.first_name || location.contact.last_name || location.contact.email || location.contact.phone">
+          No details
+        </p>
+      </div>
+
+      <div class="col-sm-4">
+        <div ng-show="location.arrival_time">
+          <span class="label label-success" ng-show="location.arrival_time <= location.time_range.time_range_end">Arrived at</span>
+          <span class="label label-warning" ng-show="location.arrival_time > location.time_range.time_range_end">Arrived at</span>
+          <br>
+          {{location.arrival_time | displayDate: location.time_range.tz}}
+          <span class="text-color-gray">{{location.time_range.tz}}</span>
+        </div>
+        <h4>Expected arrival time </h4>
+        <p ng-show="location.time_range.time_range_start && location.time_range.time_range_end">
+          <span class="text-color-gray">Earliest<br></span>
+          {{location.time_range.time_range_start | displayDate: location.time_range.tz}}
+          <span class="text-color-gray">{{location.time_range.tz}}</span>
+        </p>
+        <p ng-show="location.time_range.time_range_end">
+          <span class="text-color-gray" ng-show="location.time_range.time_range_start && location.time_range.time_range_end">Latest<br></span>
+          {{location.time_range.time_range_end | displayDate: location.time_range.tz}}
+          <span class="text-color-gray">{{location.time_range.tz}}</span>
+        </p>
+        <p class="text-color-gray" ng-hide="location.time_range.time_range_end">
+          No details
+        </p>
+      </div>
+
+      <div class="col-sm-4">
+        <div ng-show="location.features.weight || location.features.palletized">
+          <h4>Cargo details</h4>
+          <span ng-show="location.features.weight">
+            <span class="text-color-gray">Weight (lb): </span>{{location.features.weight}}
+          </span>
+          <span ng-show="location.features.palletized">
+            <h4>Pallet details</h4>
+            <p>
+              <span class="text-color-gray">Palletized: </span>{{location.features.palletized ? 'Yes' : 'No'}}
+            </p>
+            <p ng-show="location.features.pallet_number">
+              <span class="text-color-gray">No. of pallets: </span>{{location.features.pallet_number}}
+            </p>
+            <p ng-show="location.features.pallet_length || location.features.pallet_width || location.features.pallet_height">
+              <span class="text-color-gray">Pallet dimensions (inches)<br></span>
+              <span ng-show="location.features.pallet_length"><span class="text-color-gray">L:</span>{{location.features.pallet_length}}&nbsp;</span>
+              <span ng-show="location.features.pallet_width"><span class="text-color-gray">W:</span>{{location.features.pallet_width}}&nbsp;</span>
+              <span ng-show="location.features.pallet_height"><span class="text-color-gray">H:</span>{{location.features.pallet_height}}&nbsp;</span>
+            </p>
+          </span>
+        </div>
+        <div ng-show="location.comments || location.appointment_id">
+          <h4>Other information</h4>
+          <div ng-show="location.appointment_id">
+            <p><span class="text-color-gray">Appointment number/code</span><br>{{location.appointment_id}}</p>
+          </div>
+          <div ng-show="location.comments">
+            <p><span class="text-color-gray">Comments</span><br>{{location.comments}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel-footer" ng-if="shipment.permissions.can_change">
+    <div class="row">
+      <div class="col-sm-6">
+        <button ng-if="shipment.permissions.can_change" type="button" class="btn btn-xs btn-primary" ui-sref="shipment.location.edit({shipment: shipment.id, location: location.id})">Edit location</button>
+      </div>
+    </div>
+  </div>
+</div>

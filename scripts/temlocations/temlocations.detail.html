@@ -1,0 +1,32 @@
+<detail-panel detail-obj="location" heading-title="location.company_name">
+  <settings-action ng-click="toggleState('temlocation.edit', {location: location.id})" ng-if="isAuthorized([P.changeTemplateLocation])"></settings-action>
+  <detail-isolate-action detail-id="location.id"></detail-isolate-action>
+  <detail-content>
+    <div class="row">
+      <div class="col-sm-4">
+        <b>Company name</b>
+        <div ng-show="location.company_name">{{location.company_name}}</div>
+        <div ng-hide="location.company_name"><span class="text-color-gray">No details</span></div>
+      </div>
+      <div class="col-sm-4">
+        <b>Address</b>
+        <div ng-show="location.address_details.address">{{location.address_details.address}}</div>
+        <div ng-show="location.address_details.address_2">{{location.address_details.address_2}}</div>
+        <div ng-show="location.address_details.city">{{location.address_details.city}}</div>
+        <span ng-show="location.address_details.state">{{location.address_details.state}}</span>
+        <span ng-show="location.address_details.zip_code">{{location.address_details.zip_code}}</span>
+
+      </div>
+      <div class="col-sm-4">
+        <b>Company contact</b>
+        <div ng-show="location.contact.first_name || location.contact.first_name">{{location.contact.first_name}} {{location.contact.last_name}}</div>
+        <div ng-show="location.contact.phone">{{location.contact.phone.replace('+1','')}}</div>
+        <div ng-show="location.contact.email">{{location.contact.email}}</div>
+        <div ng-hide="location.contact.first_name || location.contact.first_name || location.contact.phone || location.contact.email"><span class="text-color-gray">No details</span></div>
+      </div>
+    </div>
+  </detail-content>
+  <subdetail-content>
+    <div ui-view="detail"></div>
+  </subdetail-content>
+</detail-panel>

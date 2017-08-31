@@ -1,0 +1,18 @@
+<div ng-init="init()">
+  <div ng-if="!shipments.length && !hasSearchParams() && !hasIdParam()">
+    <div ng-include="'scripts/shipments/shipments.list.empty-start.html'"></div>
+  </div>
+  <div ng-include="'scripts/shipments/shipments.list-create.html'" ng-if="isAuthorized([P.addShipment])"></div>
+  <div ng-if="!shipments.length && hasSearchParams()">
+    <div ng-include="'scripts/shipments/shipments.list.empty-search.html'"></div>
+  </div>
+  <div ng-if="!shipments.length && hasIdParam()">
+    <div ng-include="'scripts/layout/404.html'"></div>
+  </div>
+  <div dir-paginate="shipment in shipments | itemsPerPage: shipmentsPerPage" total-items="totalShipments" current-page="pagination.current" pagination-id="shipments">
+    <div ng-include="'scripts/shipments/shipments.detail.html'" ng-controller="detailController"></div>
+    <!--<hr class="hr-dark">-->
+  </div>
+  <p class="text-color-gray pull-right" ng-if="totalShipments > 1">Total: {{totalShipments}} shipments</p>
+  <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" pagination-id="shipments"></dir-pagination-controls>
+</div>

@@ -1,0 +1,31 @@
+<div ng-init="init()">
+  <div class="panel-body detail-body">
+    <b><p>Select template location</p></b>
+    <div class="well inner-scroll-view">
+      <div ng-if="!locations.length" class="">
+        <h4>No template locations found</h4>
+        <p>Click <a href="" ui-sref="temlocations">here</a> to add one</p>
+      </div>
+      <table class="table" ng-if="locations.length">
+        <tr class="active">
+          <th><b>Select</b></th>
+          <th><b>Company name</b></th> 
+          <th><b>City</b></th>
+          <th><b>State</b></th>
+          <th><b>Details</b></th>
+        </tr>
+        <tr dir-paginate="(idx, location) in locations | itemsPerPage:locationsPerPage" total-items="totalLocations" current-page="pagination.current" pagination-id="temlocations">
+          <td><button class="btn btn-primary btn-xs" disable-on-promise="loadFromTemlocation(location, shipment)">Select</button></td>
+          <td>{{location.company_name}}</td>
+          <td>{{location.address_details.city}}</td>
+          <td>{{location.address_details.state}}</td>
+          <td>
+            <div data-container="body" data-trigger="hover" data-placement="left" html="true" data-content-template="/scripts/shipments.locations.load/temlocation-popover.html" bs-popover><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <p class="text-color-gray pull-right" ng-if="totalLocations > 1">Total: {{totalLocations}} template locations</p>
+    <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" pagination-id="temlocations"></dir-pagination-controls>
+  </div>
+</div>

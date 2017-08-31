@@ -1,0 +1,14 @@
+<div ng-init="init()">
+  <div ng-if="!companyinvites.length && !hasIdParam()">
+    <div ng-include="'scripts/team.companyinvites/companyinvites.list.empty-search.html'"></div>
+  </div>
+  <div ng-if="!companyinvites.length && hasIdParam()">
+    <div ng-include="'scripts/layout/404.html'"></div>
+  </div>
+  <div dir-paginate="companyinvite in companyinvites | itemsPerPage:companyinvitesPerPage" total-items="totalCompanyinvites" current-page="pagination.current" pagination-id="companyinvites">
+    <div ng-include="'scripts/team.companyinvites/companyinvites.detail.html'" ng-controller="detailController"></div>
+    <!--<hr class="hr-dark">-->
+  </div>
+  <p class="text-color-gray pull-right" ng-if="totalCompanyinvites > 1">Total: {{totalCompanyinvites}} invitations</p>
+  <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" pagination-id="companyinvites"></dir-pagination-controls>
+</div>

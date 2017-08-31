@@ -1,0 +1,46 @@
+<div ng-init="init()">
+  <!--
+  <button ng-if="isAuthorized([P.addShipment])" ng-hide="params.id" class="btn btn-default btn-sm margin-top-bottom-xs" disable-on-promise="addShipment()"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> New shipment</button>
+  <button ng-show="params.id" class="btn btn-default btn-sm margin-top-bottom-xs" ui-sref="shipments({id:''})"><span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span> Back to shipments</button>
+  <button ng-show="hasSearchParams()" class="btn btn-warning btn-sm margin-top-bottom-xs" ui-sref="shipments" ui-sref-opts="{inherit: false}"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Clear filters</button>
+  -->
+  <back-control root-state="rootState"></back-control>
+  <clear-control root-state="rootState"></clear-control>
+  <ordering-control ordering-labels="orderingLabels" default-order-asc="false"></ordering-control>
+  <b>Filter by shipment status</b>
+  <form>
+    <div class="checkbox" ng-repeat="status in deliveryStatus">
+      <label>
+        <input type="checkbox" checklist-model="params.delivery_status" checklist-value="status.value" checklist-change="setFilters()"> {{status.label}}
+      </label>
+    </div>
+  </form>
+  <br>
+  <p><b>Filter by city, state or zip</b></p>
+  <form>
+    <div class="input-group input-group-sm">
+      <div class="input-group-btn">
+        <button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{params.d_target ? locationLabels[params.d_target] : defaultLocationLabel}} <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <li ng-repeat="(value, label) in locationLabels">
+            <a href="" ng-click="params.d_target=value">{{label}}</a>
+          </li>
+        </ul>
+      </div>
+      <span class="input-group-addon">within</span>
+    </div>
+    <br>
+    <div class="input-group input-group-sm">
+      <input length-conversion type="text"  class="form-control" aria-label="..." placeholder="{{defaultRadius}}" ng-model="params.d_radius">
+      <span class="input-group-addon">{{outputLength(params.d_radius).label}} of</span>
+    </div>
+    <br>
+    <div class="input-group input-group-sm">
+      <input type="text" class="form-control" placeholder="City, state or zip" ng-model="params.d_query">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="submit" ng-click="setFilters()">Go!</button>
+      </span>
+    </div>
+  </form>
+</div>
+<br>

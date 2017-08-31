@@ -1,0 +1,8 @@
+<div class="padded-top-bottom" ng-init="init()">
+  <div ui-view="control"></div>
+  <br>
+  <ul class="nav nav-pills nav-stacked">
+    <li role="presentation" ng-class="highlightState('shipments', {})" ng-if="isAuthorized([P.viewShipment])"><a href="" ui-sref="shipments">Shipments</a></li>
+    <li role="presentation" ng-class="highlightState('temlocations', {})" ng-if="isAuthorized([P.viewTemplateLocation])"><a href="" ui-sref="temlocations">Template locations</a></li>
+  </ul>
+</div>

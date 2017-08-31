@@ -1,0 +1,38 @@
+.delete-button{
+  text-align:center;
+  margin: auto;
+  margin-top: 2%;
+}
+
+#pending-carriers{
+
+  h3{
+    text-align:center;
+    margin-top:1%;
+  }
+  .star-rating{
+    display:inline;
+  }
+}
+
+.accept-carrier{
+  a{
+    float: left;
+    margin-right: 1%;
+  }
+}
+
+.pending-carrier-image{
+  text-align:right;
+
+}
+
+.shipment-info{
+  dt{
+    font-weight:bold;
+  }
+}
+
+#shippers-shipment-actions {
+  margin-top: 15px;
+}

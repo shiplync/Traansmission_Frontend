@@ -1,0 +1,170 @@
+.single-shipment {
+  a{
+    @extend .text-medium;
+    @extend .margin-top-large;
+    color: getColor(medium-gray);
+    display: block;
+  }
+  .shipment-header-data{
+    @extend .margin-right-small;
+  }
+  #back-shipments{
+    margin-left: - getSpace(large);
+  }
+  .shipment-delivey-label{
+    @extend .shipment-delivey-label;
+    color:getColor(night);
+  }
+  .shipment-delivey-label-bold{
+    @extend .shipment-delivey-label;
+    color:getColor(night);
+    font-weight: bold;
+    line-height:1em;
+  }
+  .delivery-stops{
+    margin:0;
+    color: getColor(medium-gray);
+    height: getSpace(medium);
+    li{
+      float:left;
+      width:120px;
+      text-align: center;
+      &.first-stop{
+        margin-left:150px;
+      }
+    }
+  }
+  .shipment-status{
+    @extend .text-large;
+    font-weight: bold;
+  }
+  .delivery-message{
+    width: 508px;
+    margin:0 auto;
+    display:block;
+    height: 80px;
+    resize: none;
+    border: 1px solid getColor(light-gray);
+  }
+  .separator{
+    border-top:1px solid getColor(light-gray);
+  }
+  .shipment-delivery-details{
+    color: getColor(medium-gray);
+    p{
+      margin:0;
+      @extend .text-small;
+    }
+  }
+  .shipping-detail-container{
+    border-left:1px solid getColor(light-gray);
+    min-height: 150px;
+  }
+  .breadcrumb-delivery{
+    width: 508px;
+    margin:0 auto;
+    /*centering*/
+    display: block;
+    overflow:auto;
+    a {
+      margin:0;
+      text-decoration: none;
+      outline: none;
+      display: block;
+      float: left;
+      background-color: getColor(light-gray);
+      padding: 0;
+      position: relative;
+      width: 120px;
+      height: 40px;
+      left: 15px;
+      background: getColor(light-gray);
+      transition: all 0.5s;
+      /*since the first link does not have a triangle before
+        it we can reduce the
+        left padding to make it look consistent
+      with other links*/
+      &:first-child{
+        @include border-top-left-radius(getSpace(medium));
+        @include border-bottom-left-radius(getSpace(medium));
+        &:before{
+          left: 15px;
+        }
+      }
+      &:last-child{
+        /*this was to prevent glitches on hover*/
+        @include border-top-right-radius(getSpace(medium));
+        @include border-bottom-right-radius(getSpace(medium));
+        padding-right: 20px;
+
+        /*we dont need an arrow after the last link*/
+        &:after {
+          content: none;
+        }
+      }
+      /*hover/active styles*/
+      &.delivered{
+        background: getColor(delivered-green);
+        &:after{
+          background: getColor(delivered-green);
+        }
+      }
+      &.on-route{
+        background: getColor(on-route-yellow);
+        &:after{
+          background: getColor(on-route-yellow);
+        }
+      }
+      &.delayed{
+        background: getColor(delayed-red);
+        &:after{
+          background: getColor(delayed-red);
+        }
+      }
+      &.pending{
+        background: getColor(pending-blue);
+        &:after{
+          background: getColor(pending-blue);
+        }
+      }
+      /*adding the arrows for the breadcrumbs
+      using rotated pseudo elements*/
+      &:after{
+        content: '';
+        position: absolute;
+        top: 0;
+        right: -20px; /*half of square's length*/
+        /*same dimension as the line-height of .breadcrumb a */
+        width: 40px;
+        height: 40px;
+        /*as you see the rotated square takes a larger height. which makes it tough to position it properly. So we are going to scale it down so that the diagonals become equal to the line-height of the link. We scale it to 70.7% because if square's:
+        length = 1; diagonal = (1^2 + 1^2)^0.5 = 1.414 (pythagoras theorem)
+        if diagonal required = 1; length = 1/1.414 = 0.707*/
+        transform: scale(0.707) rotate(45deg);
+        /*we need to prevent the arrows from getting buried under the next link*/
+        z-index: 1;
+        /*stylish arrow design using box shadow*/
+        box-shadow:5px -5px 0 5px #fff;
+        /*
+            5px - for rounded arrows and
+            50px - to prevent hover glitches on the border created using shadows*/
+        border-radius: 0 0 0 40px;
+        background: getColor(light-gray);
+        transition: all 0.5s;
+      }
+      &.before {
+        /*some styles now*/
+        border-radius: 100%;
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        margin: 8px 0;
+        position: absolute;
+        top: 0;
+        left: 30px;
+        font-weight: bold;
+        background: white;
+      }
+    }
+  }
+}

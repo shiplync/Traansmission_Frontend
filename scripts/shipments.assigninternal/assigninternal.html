@@ -1,0 +1,51 @@
+<div ng-init="init()">
+  <div class="panel-body detail-body">
+    <b><p>People in your company with access to this shipment</p></b>
+    <div class="well inner-scroll-view">
+      <div ng-if="!users.length" class="">
+        <h4>No people to show</h4>
+      </div>
+      <table class="table" ng-if="users.length">
+        <tr class="active">
+          <th><b>Name</b></th>
+          <th><b>Role</b></th>
+          <th><b>Division</b></th>
+          <th><b>Access status</b></th>
+          <th ng-if="isAuthorized([P.addShipmentAssignment, P.deleteShipmentAssignment])">
+            <b>Access</b>
+          </th>
+          <th ng-if="isAuthorized([P.addShipmentDriverAssignment, P.deleteShipmentDriverAssignment])">
+            <b>Driver</b>
+          </th>
+        </tr>
+        <tr dir-paginate="(idx, user) in users | itemsPerPage:usersPerPage" total-items="totalUsers" current-page="pagination.current" pagination-id="assigninternal">
+          <td>{{user.name}}</td>
+          <td>{{user.user_type.label}}</td>
+          <td>
+            <span ng-if="user.division">{{user.division.name}}</span>
+            <span ng-if="!user.division" class="text-color-gray">None</span>
+          </td>
+          <td>
+            <div class="label label-success label-xs" ng-if="user.shipment_access">Has access</div>
+            <div class="label label-warning label-xs" ng-if="!user.shipment_access">No access</div>
+          </td>
+          <td ng-if="isAuthorized([P.addShipmentAssignment, P.deleteShipmentAssignment])">
+            <button class="btn btn-danger btn-xs button-width-md" disable-on-promise="removeShipmentAssignment(user.shipment_assignment.id)" ng-if="user.shipment_assignment">Revoke access</button>
+            <button class="btn btn-primary btn-xs button-width-md" disable-on-promise="addShipmentAssignment(user)" ng-if="!user.shipment_assignment && !user.shipment_access">Grant access</button>
+            <button class="btn btn-primary btn-xs button-width-md disabled" ng-if="!user.shipment_assignment && user.shipment_access">Grant access</button>
+          </td>
+          <td ng-if="isAuthorized([P.addShipmentDriverAssignment, P.deleteShipmentDriverAssignment])">
+            <button class="btn btn-danger btn-xs button-width-md" disable-on-promise="removeShipmentDriverAssignment(user.shipment_assignment.driver_assignment)" ng-if="user.shipment_assignment.driver_assignment">Revoke driver</button>
+            <button class="btn btn-primary btn-xs button-width-md" disable-on-promise="addShipmentDriverAssignment(user)" ng-if="!user.shipment_assignment && !user.shipment_access">Assign driver</button>
+            <button class="btn btn-primary btn-xs button-width-md disabled" ng-if="user.shipment_assignment && !user.shipment_assignment.driver_assignment && user.shipment_access">Assign driver</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div ng-repeat="err in fieldErrors.non_field_errors">
+      <p class="inline-error">{{err}}</p>
+    </div>
+    <p class="text-color-gray pull-right" ng-if="totalUsers > 1">Total: {{totalUsers}} people</p>
+    <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" pagination-id="assigninternal"></dir-pagination-controls>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div ng-init="init()">
+  <div class="row">
+    <div class="col-sm-3">
+      <h4>Edit your profile</h4>
+      <hr>
+      <ul class="nav nav-pills nav-pills-light nav-stacked">
+        <li role="presentation" ng-class="highlightState('useraccount.edit.basic', {})"><a href="" ui-sref="useraccount.edit.basic">Basic info</a></li>
+        <li role="presentation" ng-class="highlightState('useraccount.edit.photo', {})"><a href="" ui-sref="useraccount.edit.photo">Profile photo</a></li>
+        <li role="presentation" ng-class="highlightState('useraccount.edit.password', {})"><a href="" ui-sref="useraccount.edit.password">Password</a></li>
+      </ul>
+    </div>
+    <div class="col-sm-9">
+      <div ui-view=""></div>
+    </div>
+  </div>
+</div>
