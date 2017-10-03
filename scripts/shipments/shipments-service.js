@@ -10,7 +10,7 @@ angular.module('shippersPortalApp.shipments')
     track: 'shipment'
   }
   var msg_conf = {
-    path: 'login/',
+    path: 'message/',
     track: 'shipment'
   }
 
