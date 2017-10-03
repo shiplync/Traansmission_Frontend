@@ -112,8 +112,8 @@ angular.module('shippersPortalApp')
 
   authService.login = function (credentials) {
     var defer = $q.defer();
-    //var url = ENV.APIURL + 'login/';
-	var url="http://localhost:8080/backend/index.php";
+    var url = ENV.APIURL + 'login/';
+	//var url="http://localhost:8080/backend/index.php";
 	console.log("reuesting url:" +url);
     $http.post(url, {'username': credentials.username, 'password': credentials.password})
     .then(function(response) {

@@ -25,6 +25,7 @@ angular.module('shippersPortalApp.authentication.login',[
 		console.log("response:");
 		console.log(response);
       $state.go('home');
+	//$state.go('shipments');
     })
     .catch(function (err) {
 		console.log(err);

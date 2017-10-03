@@ -75,7 +75,7 @@ angular
         permissions: [],
       },
     })
-   /* .state("home", {
+   .state("home", {
       url: "/",
       data: {
         permissions: [P.viewShipment],
@@ -87,7 +87,7 @@ angular
 		data:{
 			permissions: [],
 		},
-	})*/;
+	});
 	$urlRouterProvider.otherwise("/shipments");
   }])
 
