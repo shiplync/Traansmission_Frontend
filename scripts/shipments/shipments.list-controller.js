@@ -31,4 +31,17 @@ angular.module('shippersPortalApp.shipments.list',[
     })
     return defer.promise;
   }
+  $scope.getMessage = function() {
+    var defer = $q.defer()
+    
+    .then(function(response) {
+      alert(JSON.stringify(response));
+      
+    })
+    .catch(function(err) {
+      defer.reject(err);
+    })
+    return defer.promise;
+  }
+  
 })
