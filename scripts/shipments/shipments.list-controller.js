@@ -35,7 +35,7 @@ angular.module('shippersPortalApp.shipments.list',[
     var defer = $q.defer()
     shipmentsService.getMessage({})
     .then(function(response) {
-     $('#msgdiv).html(response.data);
+     $('#msgdiv').html(response.data);
      
     })
     .catch(function(err) {
